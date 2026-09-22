@@ -138,6 +138,22 @@ class Daemon:
         self.stop = threading.Event()
         self.lock = threading.Lock()
 
+    def _last_digest_day(self):
+        """Когда дайджест уходил в последний раз — из базы, переживает перезапуск."""
+        raw = self.store.get_meta("last_digest_day")
+        if raw:
+            try:
+                return dt.date.fromisoformat(raw)
+            except ValueError:
+                pass
+        raw = self.store.get_meta("last_digest")
+        if raw:
+            try:
+                return dt.datetime.fromisoformat(raw).astimezone(self.tz).date()
+            except ValueError:
+                pass
+        return None
+
     # --- команды в чате ---
     def handle(self, chat_id, text: str):
         cmd, _, arg = text.strip().partition(" ")
@@ -207,7 +223,9 @@ class Daemon:
         every = dt.timedelta(hours=settings.get("collect_every_hours", 3))
         hh, mm = (int(x) for x in settings["digest_time"].split(":"))
         next_collect = dt.datetime.now(self.tz)
-        last_digest_day = None
+        # дату последней отправки держим в базе, а не только в памяти: иначе
+        # перезапуск демона вечером шлёт второй дайджест за тот же день
+        last_digest_day = self._last_digest_day()
 
         log.info("Демон запущен. Дайджест в %s %s, обход каждые %s ч.",
                  settings["digest_time"], settings["timezone"], settings["collect_every_hours"])
@@ -226,6 +244,7 @@ class Daemon:
                         collect(self.cfg, self.store)
                         send_digest(self.cfg, self.store)
                         last_digest_day = now.date()
+                        self.store.set_meta("last_digest_day", last_digest_day.isoformat())
                     except Exception:
                         log.exception("отправка дайджеста упала")
             self.stop.wait(30)

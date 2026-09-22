@@ -2301,18 +2301,6 @@ sources:
     type: rss
     url: https://www.underconsideration.com/brandnew/atom.xml
 
-  - id: designboom
-    name: 'Designboom'
-    group: cases_media
-    type: rss
-    url: https://www.designboom.com/feed/
-
-  - id: dezeen
-    name: 'Dezeen'
-    group: cases_media
-    type: rss
-    url: https://www.dezeen.com/feed/
-
   - id: identitydesigned
     name: 'Identity Designed'
     group: cases_media

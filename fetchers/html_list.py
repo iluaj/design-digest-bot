@@ -9,6 +9,12 @@ from bs4 import BeautifulSoup
 from .base import Item, session, clean_text, passes_keywords, apply_title_regex, TIMEOUT
 
 SKIP_TAILS = {"", "work", "projects", "portfolio", "cases", "case-studies", "all-work"}
+# служебные разделы: архивы по тегам, категориям, пагинация. Это не проекты,
+# но по шаблону ссылки они неотличимы от кейсов — отсекаем по сегменту пути.
+SKIP_SEGMENTS = {"tag", "tags", "category", "categories", "filter", "filters",
+                 "author", "page", "search", "label", "topic", "topics",
+                 "sector", "sectors", "industry", "industries", "service",
+                 "services", "discipline", "disciplines", "type", "types"}
 # некоторые сайты отдают мусор в og:title — тогда берём название из адреса
 BAD_TITLES = {"undefined", "null", "none", "untitled", "home", "index"}
 
@@ -31,8 +37,11 @@ def _collect_links(soup, base_url: str, pattern: str):
         parts = urlsplit(absolute)
         if parts.netloc != host:
             continue
-        # отсекаем саму страницу-раздел и пагинацию
-        tail = parts.path.rstrip("/").rsplit("/", 1)[-1].lower()
+        # отсекаем саму страницу-раздел, пагинацию и архивы по тегам
+        segments = [s.lower() for s in parts.path.strip("/").split("/") if s]
+        if any(s in SKIP_SEGMENTS for s in segments):
+            continue
+        tail = segments[-1] if segments else ""
         if tail in SKIP_TAILS or tail.isdigit():
             continue
         clean = f"{parts.scheme}://{parts.netloc}{parts.path.rstrip('/')}"

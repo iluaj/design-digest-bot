@@ -1,4 +1,5 @@
-# Источники, выведенные из дайджеста: статьи, заметки, доклады, мемы.
+# Источники, выведенные из дайджеста: статьи, заметки, доклады, мемы,
+# а также издания об архитектуре и интерьерах.
 # Бот этот файл НЕ читает. Нужен источник обратно — перенесите запись
 # в sources.yaml и поправьте поле group.
 
@@ -717,3 +718,13 @@ sources:
   group: youtube
   type: rss
   url: https://www.youtube.com/feeds/videos.xml?channel_id=UCWR7anXoeACq4RYrFQyJn9w
+- id: designboom
+  name: Designboom
+  group: cases_media
+  type: rss
+  url: https://www.designboom.com/feed/
+- id: dezeen
+  name: Dezeen
+  group: cases_media
+  type: rss
+  url: https://www.dezeen.com/feed/
