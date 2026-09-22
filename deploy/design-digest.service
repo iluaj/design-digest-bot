@@ -1,0 +1,23 @@
+# Автозапуск на Linux. Установка:
+#   sudo cp deploy/design-digest.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now design-digest
+#
+# Поправьте User и WorkingDirectory под себя.
+[Unit]
+Description=Design digest Telegram bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=%i
+WorkingDirectory=/opt/design-digest-bot
+ExecStart=/opt/design-digest-bot/.venv/bin/python run.py daemon
+Restart=always
+RestartSec=30
+StandardOutput=append:/opt/design-digest-bot/logs/systemd.log
+StandardError=append:/opt/design-digest-bot/logs/systemd.err.log
+
+[Install]
+WantedBy=multi-user.target
