@@ -32,8 +32,51 @@ HEADERS = {
 TIMEOUT = 25
 
 
+try:                                  # необязательная зависимость
+    from curl_cffi import requests as curl_requests
+except ImportError:                    # без неё просто не будет запасного пути
+    curl_requests = None
+
+BLOCKED = (401, 403, 429)
+
+
+class ResilientSession(requests.Session):
+    """Обычная сессия с запасным путём через подделку TLS-отпечатка.
+
+    Защита от ботов у Cloudflare смотрит не только на заголовки, но и на
+    отпечаток TLS-рукопожатия: у питоновской библиотеки он не похож на
+    браузерный, и с серверных адресов (GitHub Actions и прочие датацентры)
+    запрос получает 403, хотя с домашнего интернета тот же сайт открывается.
+    curl_cffi повторяет рукопожатие настоящего Chrome и проходит.
+
+    Ходим так только при отказе: это заметно медленнее обычного запроса.
+    """
+
+    def get(self, url, **kw):
+        try:
+            r = super().get(url, **kw)
+            if r.status_code not in BLOCKED:
+                return r
+        except requests.RequestException:
+            r = None
+        fallback = self._impersonate(url, **kw)
+        return fallback if fallback is not None else (r if r is not None else super().get(url, **kw))
+
+    def _impersonate(self, url, **kw):
+        if curl_requests is None:
+            return None
+        try:
+            return curl_requests.get(
+                url, impersonate="chrome",
+                timeout=kw.get("timeout", TIMEOUT),
+                allow_redirects=kw.get("allow_redirects", True),
+            )
+        except Exception:
+            return None
+
+
 def session() -> requests.Session:
-    s = requests.Session()
+    s = ResilientSession()
     s.headers.update(HEADERS)
     retry = Retry(total=3, backoff_factor=1.5,
                   status_forcelist=[429, 500, 502, 503, 504])
