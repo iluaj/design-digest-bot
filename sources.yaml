@@ -1,7 +1,14 @@
 # ============================================================
-#  Источники дайджеста. Правится руками, код трогать не надо.
-#  enabled: false — временно отключить источник.
-#  Порядок групп = порядок разделов в дайджесте.
+#  Источники дайджеста — ТОЛЬКО КЕЙСЫ И ПРОЕКТЫ.
+#
+#  Сюда попадает то, что публикует работы: портфолио студий,
+#  галереи проектов, издания с разборами кейсов.
+#  Статьи, заметки, доклады и мемы сюда не берём — они лежат
+#  в sources_extra.yaml и ботом не читаются.
+#
+#  Ядро — каталог студий d1s1.com (это же источник, по которому
+#  они собирают свой ежедневный дайджест).
+#
 #  Проверить один:  .venv/bin/python run.py test <id>
 #  Проверить все:   .venv/bin/python run.py check
 # ============================================================
@@ -9,550 +16,22 @@
 settings:
   timezone: Europe/Moscow
   digest_time: "18:00"
-  collect_every_hours: 3
-  max_items_per_source: 8
-  digest_max_items: 120
-  max_per_source_in_digest: 4
+  collect_every_hours: 6
+  max_items_per_source: 5
+  digest_max_items: 80
+  max_per_source_in_digest: 3
   send_empty_digest: false
-  pause_between_sources: 2
+  pause_between_sources: 1
 
 groups:
-  ui_product:    "🖥 Интерфейсы и продуктовый дизайн"
-  ui_craft:      "⚙️ Вёрстка, доступность, дизайн-системы"
-  ui_galleries:  "🗂 Галереи интерфейсов"
-  studios:       "🎨 Студии и агентства"
-  media:         "📰 Издания и блоги"
-  telegram:      "✈️ Telegram-каналы"
-  youtube:       "▶️ YouTube"
+  ui_galleries:  "🖥 Интерфейсы и сайты"
+  studios:       "🎨 Кейсы студий"
+  cases_media:   "📐 Разборы кейсов"
+  telegram:      "✈️ Telegram"
 
 sources:
 
-  # ═══════════ 🖥 Интерфейсы и продуктовый дизайн  (55) ═══════════
-
-  - id: nielsen_norman_group
-    name: 'Nielsen Norman Group'
-    group: ui_product
-    type: rss
-    url: https://www.nngroup.com/feed/rss/
-
-  - id: ux_collective
-    name: 'UX Collective'
-    group: ui_product
-    type: rss
-    url: https://uxdesign.cc/feed
-
-  - id: ux_collective_design_systems
-    name: 'UX Collective Design Systems'
-    group: ui_product
-    type: rss
-    url: https://uxdesign.cc/feed/tagged/design-systems
-
-  - id: ux_planet
-    name: 'UX Planet'
-    group: ui_product
-    type: rss
-    url: https://uxplanet.org/feed
-
-  - id: ux_magazine
-    name: 'UX Magazine'
-    group: ui_product
-    type: rss
-    url: https://uxmag.com/feed
-
-  - id: interaction_design_foundatio
-    name: 'Interaction Design Foundation'
-    group: ui_product
-    type: rss
-    url: https://ixdf.org/rss/site_news.xml
-
-  - id: web_designer_depot
-    name: 'Web Designer Depot'
-    group: ui_product
-    type: rss
-    url: https://webdesignerdepot.com/feed/
-
-  - id: ux_movement
-    name: 'UX Movement'
-    group: ui_product
-    type: rss
-    url: https://uxmovement.com/feed/
-
-  - id: prototypr
-    name: 'Prototypr'
-    group: ui_product
-    type: rss
-    url: https://blog.prototypr.io/feed
-
-  - id: sidebar
-    name: 'Sidebar'
-    group: ui_product
-    type: rss
-    url: https://sidebar.io/feed.xml
-
-  - id: brad_frost
-    name: 'Brad Frost'
-    group: ui_product
-    type: rss
-    url: https://bradfrost.com/feed/
-
-  - id: maggie_appleton
-    name: 'Maggie Appleton'
-    group: ui_product
-    type: rss
-    url: https://maggieappleton.com/rss.xml
-
-  - id: lukew
-    name: 'LukeW'
-    group: ui_product
-    type: rss
-    url: https://www.lukew.com/rss/rss.asp
-
-  - id: tobias_van_schneider
-    name: 'Tobias van Schneider'
-    group: ui_product
-    type: rss
-    url: https://www.vanschneider.com/feed
-
-  - id: nathan_curtis
-    name: 'Nathan Curtis'
-    group: ui_product
-    type: rss
-    url: https://medium.com/feed/@nathanacurtis
-
-  - id: julie_zhuo
-    name: 'Julie Zhuo'
-    group: ui_product
-    type: rss
-    url: https://medium.com/feed/@joulee
-
-  - id: figma_release_notes
-    name: 'Figma Release Notes'
-    group: ui_product
-    type: rss
-    url: https://www.figma.com/release-notes/feed/atom.xml
-
-  - id: vercel
-    name: 'Vercel'
-    group: ui_product
-    type: rss
-    url: https://vercel.com/atom
-
-  - id: intercom_blog
-    name: 'Intercom Blog'
-    group: ui_product
-    type: rss
-    url: https://www.intercom.com/blog/feed/
-
-  - id: airbnb_design
-    name: 'Airbnb Design'
-    group: ui_product
-    type: rss
-    url: https://medium.com/feed/airbnb-design
-
-  - id: spotify_design
-    name: 'Spotify Design'
-    group: ui_product
-    type: rss
-    url: https://medium.com/feed/spotify-design
-
-  - id: dropbox_design
-    name: 'Dropbox Design'
-    group: ui_product
-    type: rss
-    url: https://medium.com/feed/dropbox-design
-
-  - id: google_design
-    name: 'Google Design'
-    group: ui_product
-    type: rss
-    url: https://medium.com/feed/google-design
-
-  - id: microsoft_design
-    name: 'Microsoft Design'
-    group: ui_product
-    type: rss
-    url: https://medium.com/feed/microsoft-design
-
-  - id: jason_fried
-    name: 'Jason Fried'
-    group: ui_product
-    type: rss
-    url: https://world.hey.com/jason/feed.atom
-
-  - id: duolingo_blog
-    name: 'Duolingo Blog'
-    group: ui_product
-    type: rss
-    url: https://blog.duolingo.com/rss/
-
-  - id: tg_pdigest
-    name: 'Дайджест продуктового дизайна'
-    group: ui_product
-    type: telegram
-    channel: pdigest
-    mode: web
-
-  - id: tg_uxfromhell
-    name: 'Адовый UX'
-    group: ui_product
-    type: telegram
-    channel: uxfromhell
-    mode: web
-
-  - id: tg_uxnotes
-    name: 'UX Notes'
-    group: ui_product
-    type: telegram
-    channel: uxnotes
-    mode: web
-
-  - id: tg_uxhorn
-    name: 'UX Horn'
-    group: ui_product
-    type: telegram
-    channel: uxhorn
-    mode: web
-
-  - id: tg_uxdigest
-    name: 'UX Digest'
-    group: ui_product
-    type: telegram
-    channel: uxdigest
-    mode: web
-
-  - id: tg_ilyabirman_channel
-    name: 'Илья Бирман'
-    group: ui_product
-    type: telegram
-    channel: ilyabirman_channel
-    mode: web
-
-  - id: tg_bureaugorbunov
-    name: 'Бюро Горбунова'
-    group: ui_product
-    type: telegram
-    channel: bureaugorbunov
-    mode: web
-
-  - id: tg_bureauschool
-    name: 'Школа Бюро Горбунова'
-    group: ui_product
-    type: telegram
-    channel: bureauschool
-    mode: web
-
-  - id: tg_designavito
-    name: 'Дизайн Авито'
-    group: ui_product
-    type: telegram
-    channel: designavito
-    mode: web
-
-  - id: tg_ozondesign
-    name: 'Ozon Design'
-    group: ui_product
-    type: telegram
-    channel: ozondesign
-    mode: web
-
-  - id: tg_magnitdesign
-    name: 'Дизайн Магнита'
-    group: ui_product
-    type: telegram
-    channel: magnitdesign
-    mode: web
-
-  - id: tg_flowwowdesign
-    name: 'Дизайн Flowwow'
-    group: ui_product
-    type: telegram
-    channel: flowwowdesign
-    mode: web
-
-  - id: tg_desprod
-    name: 'Костя Горский'
-    group: ui_product
-    type: telegram
-    channel: desprod
-    mode: web
-
-  - id: tg_designpub2
-    name: 'Дизайн-кабак'
-    group: ui_product
-    type: telegram
-    channel: designpub
-    mode: web
-
-  - id: tg_figmaplugin
-    name: 'Figma Design'
-    group: ui_product
-    type: telegram
-    channel: figmaplugin
-    mode: web
-
-  - id: tg_designdealer
-    name: 'Designdealer'
-    group: ui_product
-    type: telegram
-    channel: designdealer
-    mode: web
-
-  - id: tg_uiux_design
-    name: 'UI/UX inspiration'
-    group: ui_product
-    type: telegram
-    channel: uiux_design
-    mode: web
-
-  - id: tg_nowhow
-    name: 'Now How'
-    group: ui_product
-    type: telegram
-    channel: nowhow
-    mode: web
-
-  - id: tg_cyrillicdesign
-    name: 'дизайнерс.сайты'
-    group: ui_product
-    type: telegram
-    channel: cyrillicdesign
-    mode: web
-
-  - id: tg_uxfail
-    name: 'Студия «Луч»'
-    group: ui_product
-    type: telegram
-    channel: uxfail
-    mode: web
-
-  - id: tg_uxmarafon
-    name: 'UX-Марафон'
-    group: ui_product
-    type: telegram
-    channel: uxmarafon
-    mode: web
-
-  - id: tg_productsense
-    name: 'ProductSense'
-    group: ui_product
-    type: telegram
-    channel: productsense
-    mode: web
-
-  - id: tg_productclub
-    name: 'Борода продакта'
-    group: ui_product
-    type: telegram
-    channel: productclub
-    mode: web
-
-  - id: tg_hardclient
-    name: 'Hard Client'
-    group: ui_product
-    type: telegram
-    channel: hardclient
-    mode: web
-
-  - id: tg_uxrdesign
-    name: 'Мамкин Дизайнер'
-    group: ui_product
-    type: telegram
-    channel: uxrdesign
-    mode: web
-
-  - id: tg_mosinkru
-    name: 'Почитать о дизайне'
-    group: ui_product
-    type: telegram
-    channel: mosinkru
-    mode: web
-
-  - id: tg_dsgnwknd
-    name: 'Дизайн-выходные'
-    group: ui_product
-    type: telegram
-    channel: dsgnwknd
-    mode: web
-
-  - id: tg_bbe_school
-    name: 'Bang Bang Education'
-    group: ui_product
-    type: telegram
-    channel: bbe_school
-    mode: web
-
-  - id: tg_bizikovru
-    name: 'Саша Бизиков'
-    group: ui_product
-    type: telegram
-    channel: bizikovru
-    mode: web
-
-  # ═══════════ ⚙️ Вёрстка, доступность, дизайн-системы  (27) ═══════════
-
-  - id: smashing_magazine
-    name: 'Smashing Magazine'
-    group: ui_craft
-    type: rss
-    url: https://www.smashingmagazine.com/feed/
-
-  - id: a_list_apart
-    name: 'A List Apart'
-    group: ui_craft
-    type: rss
-    url: https://alistapart.com/main/feed/
-
-  - id: css_tricks
-    name: 'CSS-Tricks'
-    group: ui_craft
-    type: rss
-    url: https://css-tricks.com/feed/
-
-  - id: josh_w_comeau
-    name: 'Josh W Comeau'
-    group: ui_craft
-    type: rss
-    url: https://www.joshwcomeau.com/rss.xml
-
-  - id: jim_nielsen
-    name: 'Jim Nielsen'
-    group: ui_craft
-    type: rss
-    url: https://blog.jim-nielsen.com/feed.xml
-
-  - id: robin_rendle
-    name: 'Robin Rendle'
-    group: ui_craft
-    type: rss
-    url: https://www.robinrendle.com/feed.xml
-
-  - id: piccalilli
-    name: 'Piccalilli'
-    group: ui_craft
-    type: rss
-    url: https://piccalil.li/feed.xml
-
-  - id: andy_bell
-    name: 'Andy Bell'
-    group: ui_craft
-    type: rss
-    url: https://bell.bz/feed.xml
-
-  - id: adam_silver
-    name: 'Adam Silver'
-    group: ui_craft
-    type: rss
-    url: https://adamsilver.io/atom.xml
-
-  - id: paco_coursey
-    name: 'Paco Coursey'
-    group: ui_craft
-    type: rss
-    url: https://paco.me/feed.xml
-
-  - id: adam_argyle
-    name: 'Adam Argyle'
-    group: ui_craft
-    type: rss
-    url: https://nerdy.dev/rss.xml
-
-  - id: lea_verou
-    name: 'Lea Verou'
-    group: ui_craft
-    type: rss
-    url: https://lea.verou.me/feed.xml
-
-  - id: josh_collinsworth
-    name: 'Josh Collinsworth'
-    group: ui_craft
-    type: rss
-    url: https://joshcollinsworth.com/rss.xml
-
-  - id: adrian_roselli
-    name: 'Adrian Roselli'
-    group: ui_craft
-    type: rss
-    url: https://adrianroselli.com/feed
-
-  - id: scott_o_hara
-    name: 'Scott O''Hara'
-    group: ui_craft
-    type: rss
-    url: https://www.scottohara.me/feed.xml
-
-  - id: manuel_matuzovic
-    name: 'Manuel Matuzovic'
-    group: ui_craft
-    type: rss
-    url: https://www.matuzo.at/feed.xml
-
-  - id: ahmad_shadeed
-    name: 'Ahmad Shadeed'
-    group: ui_craft
-    type: rss
-    url: https://ishadeed.com/feed.xml
-
-  - id: hidde_de_vries
-    name: 'Hidde de Vries'
-    group: ui_craft
-    type: rss
-    url: https://hidde.blog/feed.xml
-
-  - id: jeremy_keith
-    name: 'Jeremy Keith'
-    group: ui_craft
-    type: rss
-    url: https://adactio.com/rss
-
-  - id: dave_rupert
-    name: 'Dave Rupert'
-    group: ui_craft
-    type: rss
-    url: https://daverupert.com/atom.xml
-
-  - id: htmhell
-    name: 'HTMHell'
-    group: ui_craft
-    type: rss
-    url: https://www.htmhell.dev/feed.xml
-
-  - id: chris_coyier
-    name: 'Chris Coyier'
-    group: ui_craft
-    type: rss
-    url: https://chriscoyier.net/feed/
-
-  - id: ben_myers
-    name: 'Ben Myers'
-    group: ui_craft
-    type: rss
-    url: https://benmyers.dev/feed.xml
-
-  - id: brent_jackson
-    name: 'Brent Jackson'
-    group: ui_craft
-    type: rss
-    url: https://jxnblk.com/rss.xml
-
-  - id: the_a11y_project
-    name: 'The A11Y Project'
-    group: ui_craft
-    type: rss
-    url: https://www.a11yproject.com/feed/feed.xml
-
-  - id: tpgi
-    name: 'TPGi'
-    group: ui_craft
-    type: rss
-    url: https://www.tpgi.com/feed/
-
-  - id: cloud_four
-    name: 'Cloud Four'
-    group: ui_craft
-    type: rss
-    url: https://cloudfour.com/feed/
-
-  # ═══════════ 🗂 Галереи интерфейсов  (10) ═══════════
+  # ═══════════ 🖥 Интерфейсы и сайты  (10) ═══════════
 
   - id: one_page_love
     name: 'One Page Love'
@@ -623,7 +102,7 @@ sources:
     url: https://land-book.com/
     link_pattern: '/websites/'
 
-  # ═══════════ 🎨 Студии и агентства  (16) ═══════════
+  # ═══════════ 🎨 Кейсы студий  (313) ═══════════
 
   - id: d1s1
     name: 'D1S1 Design Spotlight'
@@ -665,55 +144,151 @@ sources:
     url: https://www.depotwpf.ru/portfolio
     link_pattern: '/portfolio/'
 
-  - id: logomachine
-    name: 'Логомашина'
+  - id: all_true
+    name: 'All True'
     group: studios
     type: html
-    url: https://logomachine.ru/portfolio
-    link_pattern: '/portfolio/'
-    enabled: false
-
-  - id: pentagram
-    name: 'Pentagram'
-    group: studios
-    type: html
-    url: https://www.pentagram.com/work
+    url: https://www.alltrue.co/projects
     link_pattern: '/work/'
 
-  - id: collins
-    name: 'COLLINS'
+  - id: accept_proceed
+    name: 'Accept & Proceed'
     group: studios
     type: html
-    url: https://wearecollins.com/case-studies/
+    url: https://www.acceptandproceed.com/work
+    link_pattern: '/work/'
+
+  - id: burocratik
+    name: 'Bürocratik'
+    group: studios
+    type: html
+    url: https://www.burocratik.com/work
+    link_pattern: '/work/'
+
+  - id: aline
+    name: 'Aline'
+    group: studios
+    type: html
+    url: https://www.aline.studio/work
+    link_pattern: '/project/'
+
+  - id: azai_studios
+    name: 'Azai Studios'
+    group: studios
+    type: html
+    url: https://www.azaistudios.com/work
+    link_pattern: '/work/'
+
+  - id: alphamark
+    name: 'Alphamark'
+    group: studios
+    type: html
+    url: https://alphamark.design/projects
+    link_pattern: '/projects/'
+
+  - id: asketic
+    name: 'Asketic'
+    group: studios
+    type: html
+    url: https://asketic.com/work
+    link_pattern: '/project/'
+
+  - id: analogue_agency
+    name: 'Analogue Agency'
+    group: studios
+    type: html
+    url: https://analogueagency.com/case/vitra
+    link_pattern: '/case/'
+
+  - id: akqa
+    name: 'AKQA'
+    group: studios
+    type: html
+    url: https://www.akqa.com/work/montblanc/digital-paper/
+    link_pattern: '/work/'
+
+  - id: andrew_howard
+    name: 'Andrew Howard'
+    group: studios
+    type: html
+    url: https://studioandrewhoward.com/projects
+    link_pattern: '/projects/'
+
+  - id: antidote
+    name: 'Antidote'
+    group: studios
+    type: html
+    url: https://www.antidote.co.uk/work
+    link_pattern: '/work/'
+
+  - id: aad
+    name: 'Aad'
+    group: studios
+    type: html
+    url: https://aad.works/work/
+    link_pattern: '/project/'
+
+  - id: bandit
+    name: 'Bandit®'
+    group: studios
+    type: html
+    url: https://www.banditdesigngroup.com.au/work
+    link_pattern: '/project/'
+
+  - id: alter
+    name: 'Alter'
+    group: studios
+    type: html
+    url: https://www.alter.com.au/
+    link_pattern: '/projects/'
+
+  - id: bauns
+    name: 'Bauns'
+    group: studios
+    type: html
+    url: https://www.bauns.ru/works
+    link_pattern: '/works/'
+
+  - id: aluzian
+    name: 'Aluzian'
+    group: studios
+    type: html
+    url: https://aluzian.com/work/
+    link_pattern: '/works/'
+
+  - id: a_practice_for_everyday_
+    name: 'A Practice for Everyday Life'
+    group: studios
+    type: html
+    url: https://apracticeforeverydaylife.com/case-studies
     link_pattern: '/case-studies/'
 
-  - id: wolffolins
-    name: 'Wolff Olins'
+  - id: bas_id
+    name: 'BAS ID'
     group: studios
     type: html
-    url: https://www.wolffolins.com/work
-    link_pattern: '/work/'
-    title_regex: '^Work\s*[—–-]\s*(.+?)\s*[—–-]'
+    url: https://www.basid.se/selected-projects
+    link_pattern: '/projects/'
 
-  - id: dumbar
-    name: 'Studio Dumbar'
+  - id: a_work_of_substance
+    name: 'A Work Of Substance'
     group: studios
     type: html
-    url: https://studiodumbar.com/work
-    link_pattern: '/work/'
+    url: https://www.aworkofsubstance.com/
+    link_pattern: '/project/'
 
-  - id: koto
-    name: 'Koto'
+  - id: barkas
+    name: 'Barkas'
     group: studios
     type: html
-    url: https://koto.com/work
-    link_pattern: '/work/'
+    url: https://barkas.com/projects/
+    link_pattern: '/projects/'
 
-  - id: manual
-    name: 'Manual'
+  - id: blackburn
+    name: 'Blackburn'
     group: studios
     type: html
-    url: https://manual.studio/work
+    url: https://studioblackburn.com/work
     link_pattern: '/work/'
 
   - id: bond
@@ -723,189 +298,2083 @@ sources:
     url: https://www.thisisbond.com/work
     link_pattern: '/work/'
 
-  - id: behance_branding
-    name: 'Behance / Branding'
+  - id: bakken_bck
+    name: 'Bakken & Bæck'
     group: studios
     type: html
-    url: https://www.behance.net/search/projects?field=branding
-    link_pattern: '/gallery/'
-    enabled: false
+    url: https://bakkenbaeck.com/work
+    link_pattern: '/case/'
 
-  - id: dribbble_popular
-    name: 'Dribbble / Popular'
+  - id: anagram
+    name: 'Anagram'
     group: studios
     type: html
-    url: https://dribbble.com/shots/popular
-    link_pattern: '/shots/'
-    enabled: false
+    url: https://anagram.london/
+    link_pattern: '/work/'
 
-  # ═══════════ 📰 Издания и блоги  (13) ═══════════
+  - id: after_hours
+    name: 'After Hours'
+    group: studios
+    type: html
+    url: https://afterhours.studio/work
+    link_pattern: '/work/'
 
-  - id: fast_company_co_design
-    name: 'Fast Company Co.Design'
-    group: media
-    type: rss
-    url: https://www.fastcompany.com/co-design/rss
+  - id: anagrama
+    name: 'Anagrama'
+    group: studios
+    type: html
+    url: https://www.anagrama.com/
+    link_pattern: '/project/'
+
+  - id: 87
+    name: '87'
+    group: studios
+    type: html
+    url: https://www.madebyeightyseven.com/work
+    link_pattern: '/work/'
+
+  - id: bernd_kuchenbeiser_proje
+    name: 'Bernd Kuchenbeiser Projekte'
+    group: studios
+    type: html
+    url: https://www.kuchenbeiser.de/projects
+    link_pattern: '/images_projects/'
+
+  - id: 25ah
+    name: '25AH'
+    group: studios
+    type: html
+    url: https://www.25ah.se/
+    link_pattern: '/project/'
+
+  - id: brody_associates
+    name: 'Brody Associates'
+    group: studios
+    type: html
+    url: https://www.brody-associates.com/work
+    link_pattern: '/work/'
+
+  - id: bleed
+    name: 'Bleed'
+    group: studios
+    type: html
+    url: https://bleed.com/work
+    link_pattern: '/work/'
+
+  - id: build
+    name: 'Build'
+    group: studios
+    type: html
+    url: https://www.studio.build/case-studies
+    link_pattern: '/case-studies/'
+
+  - id: border_zero
+    name: 'Border Zero'
+    group: studios
+    type: html
+    url: https://borderze.ro/projects
+    link_pattern: '/projects/'
+
+  - id: bullet
+    name: 'Bullet'
+    group: studios
+    type: html
+    url: https://www.wearebullet.com.au/work
+    link_pattern: '/case-studies/'
+
+  - id: atelje_altmann
+    name: 'Ateljé Altmann'
+    group: studios
+    type: html
+    url: https://ateljealtmann.com/project/outside-in
+    link_pattern: '/project/'
+
+  - id: bontemps
+    name: 'Bontemps'
+    group: studios
+    type: html
+    url: https://www.bontemps.agency/
+    link_pattern: '/work/'
+
+  - id: bruch
+    name: 'Bruch'
+    group: studios
+    type: html
+    url: https://studiobruch.com/work/
+    link_pattern: '/work/'
+
+  - id: asfall_studio
+    name: 'Asfall Studio'
+    group: studios
+    type: html
+    url: https://ashfall.studio/work/
+    link_pattern: '/work/'
+
+  - id: andwalsh
+    name: 'AndWalsh'
+    group: studios
+    type: html
+    url: https://andwalsh.com/work/
+    link_pattern: '/work/'
+
+  - id: acre
+    name: 'Acre'
+    group: studios
+    type: html
+    url: https://acre.studio/work
+    link_pattern: '/work/'
+
+  - id: big_fish
+    name: 'Big Fish'
+    group: studios
+    type: html
+    url: https://bigfish.design/work
+    link_pattern: '/work/'
+
+  - id: bureau_borsche
+    name: 'Bureau Borsche'
+    group: studios
+    type: html
+    url: https://bureauborsche.com/projects/fc-internazionale-milano/visual-identity
+    link_pattern: '/projects/'
+
+  - id: commission_studio
+    name: 'Commission Studio'
+    group: studios
+    type: html
+    url: https://www.commission.studio/projects/zegna
+    link_pattern: '/projects/'
+
+  - id: cm_supply
+    name: 'CM.SUPPLY'
+    group: studios
+    type: html
+    url: https://cm.supply/cm-supply-works-new
+    link_pattern: '/cm-supply-works-new/'
+
+  - id: cameron_fernandes
+    name: 'Cameron Fernandes'
+    group: studios
+    type: html
+    url: https://www.cameronfernandes.com/work
+    link_pattern: '/work/'
+
+  - id: chong
+    name: 'Chong'
+    group: studios
+    type: html
+    url: https://www.chong.studio/work
+    link_pattern: '/work/'
+
+  - id: cru
+    name: 'Cru'
+    group: studios
+    type: html
+    url: https://www.madebycru.com/branding-projects
+    link_pattern: '/work/'
+
+  - id: colors_and_the_kids
+    name: 'Colors And The Kids'
+    group: studios
+    type: html
+    url: https://catk.de/work
+    link_pattern: '/work/'
+
+  - id: classmate
+    name: 'Classmate'
+    group: studios
+    type: html
+    url: https://www.classmatestudio.com/work
+    link_pattern: '/works/'
+
+  - id: and
+    name: 'And'
+    group: studios
+    type: html
+    url: https://byandstudio.com/work/
+    link_pattern: '/work/'
+
+  - id: dmcg
+    name: 'DMCG'
+    group: studios
+    type: html
+    url: https://dmcg.co/
+    link_pattern: '/projects/'
+
+  - id: daughter
+    name: 'Daughter'
+    group: studios
+    type: html
+    url: https://www.daughtercreative.com/
+    link_pattern: '/work/'
+
+  - id: cirkel
+    name: 'Cirkel'
+    group: studios
+    type: html
+    url: https://www.cirkeldesign.com/
+    link_pattern: '/work/'
+
+  - id: campbell_hay
+    name: 'Campbell Hay'
+    group: studios
+    type: html
+    url: https://www.campbellhay.com/work
+    link_pattern: '/project/'
+
+  - id: bedow
+    name: 'Bedow'
+    group: studios
+    type: html
+    url: https://www.bedow.se/work/
+    link_pattern: '/work/'
+
+  - id: biggie
+    name: 'Biggie'
+    group: studios
+    type: html
+    url: https://studiobiggie.com/work/
+    link_pattern: '/projects/'
+
+  - id: chenchen
+    name: 'Chenchen'
+    group: studios
+    type: html
+    url: https://studiochenchen.com/work/
+    link_pattern: '/case-study/'
+
+  - id: date_of_birth
+    name: 'Date of Birth'
+    group: studios
+    type: html
+    url: https://www.dateofbirth.com.au/work
+    link_pattern: '/work/'
+
+  - id: decimal_studios
+    name: 'Decimal Studios'
+    group: studios
+    type: html
+    url: https://decimalstudios.com/work
+    link_pattern: '/projects/'
+
+  - id: davy_denduyver
+    name: 'Davy Denduyver'
+    group: studios
+    type: html
+    url: http://www.davydenduyver.com/
+    link_pattern: '/work/'
+
+  - id: blow
+    name: 'Blow'
+    group: studios
+    type: html
+    url: https://www.blow.hk/projects/
+    link_pattern: '/project/'
+
+  - id: bareis_nicolaus
+    name: 'Bareis + Nicolaus'
+    group: studios
+    type: html
+    url: https://www.bareis-nicolaus.com/work/
+    link_pattern: '/project/'
+
+  - id: blok
+    name: 'Blok'
+    group: studios
+    type: html
+    url: https://blokdesign.com/
+    link_pattern: '/project/'
+
+  - id: comet
+    name: 'Comet'
+    group: studios
+    type: html
+    url: https://www.cometstudio.io/work
+    link_pattern: '/work/'
+
+  - id: derek_eric
+    name: 'Derek & Eric'
+    group: studios
+    type: html
+    url: https://www.derekanderic.co.uk/work
+    link_pattern: '/work/'
+
+  - id: collins
+    name: 'Collins'
+    group: studios
+    type: html
+    url: https://wearecollins.com/case-studies/
+    link_pattern: '/case-studies/'
+
+  - id: dad
+    name: 'DAD'
+    group: studios
+    type: html
+    url: https://studiodad.biz/case-studies-list/
+    link_pattern: '/case-study/'
+
+  - id: decade
+    name: 'Decade'
+    group: studios
+    type: html
+    url: https://decadenewyork.com/pages/banana-republic
+    link_pattern: '/pages/'
+
+  - id: esh
+    name: 'ESH'
+    group: studios
+    type: html
+    url: https://eshgruppa.com/works/tochka
+    link_pattern: '/works/'
+
+  - id: dumbar
+    name: 'Dumbar'
+    group: studios
+    type: html
+    url: https://studiodumbar.com/work
+    link_pattern: '/work/'
+
+  - id: dixonbaxi
+    name: 'DixonBaxi'
+    group: studios
+    type: html
+    url: https://www.dixonbaxi.com/case-study/crazygames
+    link_pattern: '/case-study/'
+
+  - id: durham
+    name: 'Durham'
+    group: studios
+    type: html
+    url: https://www.durhamstudio.com/design
+    link_pattern: '/work/'
+
+  - id: document
+    name: 'Document'
+    group: studios
+    type: html
+    url: https://dokument.studio/work
+    link_pattern: '/work/'
+
+  - id: c100_studio
+    name: 'C100 Studio'
+    group: studios
+    type: html
+    url: https://c100studio.com/work-index/
+    link_pattern: '/projects/'
+
+  - id: feely
+    name: 'Feely'
+    group: studios
+    type: html
+    url: https://www.feelystudio.com/works
+    link_pattern: '/works/'
+
+  - id: debut_debut
+    name: 'Debut Debut'
+    group: studios
+    type: html
+    url: https://www.debutdebut.com/projectindex/
+    link_pattern: '/project/'
+
+  - id: dennis
+    name: 'Dennis'
+    group: studios
+    type: html
+    url: https://dennis.studio/projects
+    link_pattern: '/project/'
+
+  - id: contrast_foundry
+    name: 'Contrast Foundry'
+    group: studios
+    type: html
+    url: https://contrastfoundry.com/projects/interview-robert-sans
+    link_pattern: '/projects/'
+
+  - id: family_office
+    name: 'Family Office'
+    group: studios
+    type: html
+    url: https://familyoffice.is/work
+    link_pattern: '/work/'
+
+  - id: fold7
+    name: 'Fold7'
+    group: studios
+    type: html
+    url: https://fold7design.com/work
+    link_pattern: '/work/'
+
+  - id: fibra_studio
+    name: 'Fibra Studio'
+    group: studios
+    type: html
+    url: https://fibra.pe/
+    link_pattern: '/works/'
+
+  - id: dd_london
+    name: 'DD London'
+    group: studios
+    type: html
+    url: https://ddlondon.com/projects
+    link_pattern: '/project/'
+
+  - id: barca
+    name: 'Barca'
+    group: studios
+    type: html
+    url: https://www.wearebarca.com/
+    link_pattern: '/work/'
+
+  - id: banana
+    name: 'Banana'
+    group: studios
+    type: html
+    url: https://studiobanana.com/work/
+    link_pattern: '/work/'
+
+  - id: drama
+    name: 'Drama'
+    group: studios
+    type: html
+    url: https://studio-drama.com/projects
+    link_pattern: '/projects/'
+
+  - id: embacy
+    name: 'Embacy'
+    group: studios
+    type: html
+    url: https://www.linkedin.com/posts/orlowadim_top-10-rebrandings-of-2025-in-tech-activity-7416434857616240640-Y_Qg
+    link_pattern: '/company/'
+
+  - id: focus_lab
+    name: 'Focus Lab'
+    group: studios
+    type: html
+    url: https://www.focuslab.agency/work
+    link_pattern: '/work/'
+
+  - id: form_brands_studio
+    name: 'FORM Brands Studio'
+    group: studios
+    type: html
+    url: https://www.creativereview.co.uk/st-georges-cross-design-team-england-form/
+    link_pattern: '/landing-page/'
+
+  - id: do_things
+    name: 'Do Things'
+    group: studios
+    type: html
+    url: https://dothingsnyc.com/work/
+    link_pattern: '/work/'
+
+  - id: disegno
+    name: 'Disegno'
+    group: studios
+    type: html
+    url: https://www.disegno.com.au/projects/
+    link_pattern: '/projects/'
+
+  - id: further
+    name: 'Further'
+    group: studios
+    type: html
+    url: https://www.further.group/work
+    link_pattern: '/work/'
+
+  - id: dinamo
+    name: 'Dinamo'
+    group: studios
+    type: html
+    url: https://abcdinamo.com/custom
+    link_pattern: '/custom/'
+
+  - id: fred_trevor
+    name: 'Fred Trevor'
+    group: studios
+    type: html
+    url: https://www.fredtrevor.design/
+    link_pattern: '/work/'
+
+  - id: forsman_bodenfors
+    name: 'Forsman & Bodenfors'
+    group: studios
+    type: html
+    url: https://www.forsman.com/work/
+    link_pattern: '/work/'
+
+  - id: essen
+    name: 'Essen'
+    group: studios
+    type: html
+    url: https://esseninternational.com/work/
+    link_pattern: '/work/'
+
+  - id: club
+    name: 'CLUB'
+    group: studios
+    type: html
+    url: https://workof.club/
+    link_pattern: '/work/'
+
+  - id: found
+    name: 'Found'
+    group: studios
+    type: html
+    url: https://www.found-studio.com/
+    link_pattern: '/work/'
+
+  - id: foundry
+    name: 'Foundry'
+    group: studios
+    type: html
+    url: https://studiofoundry.co.uk/projects/
+    link_pattern: '/projects/'
+
+  - id: gw
+    name: 'G—W'
+    group: studios
+    type: html
+    url: https://g-w.studio/work/
+    link_pattern: '/case/'
+
+  - id: elmwood
+    name: 'Elmwood'
+    group: studios
+    type: html
+    url: https://elmwood.com/work/
+    link_pattern: '/work/'
+
+  - id: forth_back
+    name: 'Forth+Back'
+    group: studios
+    type: html
+    url: https://forthandback.la/projects
+    link_pattern: '/projects/'
+
+  - id: fiasco
+    name: 'Fiasco'
+    group: studios
+    type: html
+    url: https://fiasco.design/work/
+    link_pattern: '/work/'
+
+  - id: gijs_lammers
+    name: 'Gijs Lammers'
+    group: studios
+    type: html
+    url: https://www.gijs-lammers.com/projects
+    link_pattern: '/projects/'
+
+  - id: grandarmy
+    name: 'GrandArmy'
+    group: studios
+    type: html
+    url: https://www.grandarmy.com/work
+    link_pattern: '/projects/'
+
+  - id: geist
+    name: 'Geist'
+    group: studios
+    type: html
+    url: https://geist.co/work
+    link_pattern: '/work/'
+
+  - id: field
+    name: 'Field'
+    group: studios
+    type: html
+    url: https://field.io/work
+    link_pattern: '/work/'
+
+  - id: haus
+    name: 'Haus'
+    group: studios
+    type: html
+    url: https://madeinhaus.com/work
+    link_pattern: '/work/'
+
+  - id: george_harrison
+    name: 'George & Harrison'
+    group: studios
+    type: html
+    url: https://www.georgeandharrison.nl/work/
+    link_pattern: '/work/'
+
+  - id: frost
+    name: 'Frost*'
+    group: studios
+    type: html
+    url: https://www.frostcollective.com/work
+    link_pattern: '/work/'
+
+  - id: creative_spark
+    name: 'Creative Spark'
+    group: studios
+    type: html
+    url: https://creativespark.co.uk/work/
+    link_pattern: '/work/'
+
+  - id: garrett_elizabeth_office
+    name: 'Garrett Elizabeth Office'
+    group: studios
+    type: html
+    url: https://geo-nyc.com/
+    link_pattern: '/projects/'
+
+  - id: herve
+    name: 'Herve'
+    group: studios
+    type: html
+    url: https://herve.paris/our-work
+    link_pattern: '/our-work/'
+
+  - id: clear
+    name: 'Clear'
+    group: studios
+    type: html
+    url: https://cleardesign.com.au/projects/
+    link_pattern: '/projects/'
+
+  - id: fable_co
+    name: 'Fable&Co'
+    group: studios
+    type: html
+    url: https://fableco.uk/portfolio
+    link_pattern: '/project/'
+
+  - id: giga_design
+    name: 'Giga Design'
+    group: studios
+    type: html
+    url: https://gigadesignstudio.com/projects
+    link_pattern: '/projects/'
+
+  - id: hymn
+    name: 'Hymn'
+    group: studios
+    type: html
+    url: https://www.hymn.design/portfolio
+    link_pattern: '/projets/'
+
+  - id: everland
+    name: 'Everland'
+    group: studios
+    type: html
+    url: https://everland.dk/work/
+    link_pattern: '/work/'
+
+  - id: how_how
+    name: 'How & How'
+    group: studios
+    type: html
+    url: https://how.studio/branding
+    link_pattern: '/branding/'
+
+  - id: epoch
+    name: 'Epoch'
+    group: studios
+    type: html
+    url: https://weareepoch.com/work/
+    link_pattern: '/work/'
+
+  - id: futurebrand
+    name: 'Futurebrand'
+    group: studios
+    type: html
+    url: https://www.futurebrand.com/our-work/amazonia
+    link_pattern: '/our-work/'
+
+  - id: icu
+    name: 'ICU'
+    group: studios
+    type: html
+    url: https://icu.agency/portfolio
+    link_pattern: '/projects/'
+
+  - id: hello_comrade
+    name: 'Hello Comrade'
+    group: studios
+    type: html
+    url: https://hellocomradestudio.com/work
+    link_pattern: '/work/'
+
+  - id: jens_nilsson
+    name: 'Jens Nilsson'
+    group: studios
+    type: html
+    url: https://www.jens-nilsson.com/work
+    link_pattern: '/work/'
+
+  - id: huge
+    name: 'Huge'
+    group: studios
+    type: html
+    url: https://www.hugeinc.com/work
+    link_pattern: '/case-study/'
+
+  - id: dnco
+    name: 'DNCO'
+    group: studios
+    type: html
+    url: https://dnco.com/
+    link_pattern: '/work/'
+
+  - id: juice
+    name: 'Juice'
+    group: studios
+    type: html
+    url: https://www.juice.agency/work
+    link_pattern: '/work/'
+
+  - id: kind
+    name: 'Kind'
+    group: studios
+    type: html
+    url: https://kindstudio.co.uk/
+    link_pattern: '/projects/'
+
+  - id: koseda
+    name: 'Koseda'
+    group: studios
+    type: html
+    url: https://www.sebastiankoseda.com/
+    link_pattern: '/projects/'
+
+  - id: juno
+    name: 'Juno'
+    group: studios
+    type: html
+    url: https://juno-hamburg.com/work
+    link_pattern: '/work/'
+
+  - id: kit
+    name: 'Kit'
+    group: studios
+    type: html
+    url: https://www.kit.studio/work
+    link_pattern: '/work/'
+
+  - id: kesselskramer
+    name: 'KesselsKramer'
+    group: studios
+    type: html
+    url: https://www.kesselskramer.com/work
+    link_pattern: '/project/'
+
+  - id: gander
+    name: 'Gander'
+    group: studios
+    type: html
+    url: https://takeagander.com/work
+    link_pattern: '/project/'
+
+  - id: lit_create
+    name: 'LIT Create'
+    group: studios
+    type: html
+    url: https://www.litcreate.com/work
+    link_pattern: '/work-detail/'
+
+  - id: harel_octante
+    name: 'Harel+Octante'
+    group: studios
+    type: html
+    url: https://www.harel-ocante.com/work
+    link_pattern: '/work/'
+
+  - id: design_dough
+    name: 'Design Dough'
+    group: studios
+    type: html
+    url: https://designdough.co.uk/work/
+    link_pattern: '/work/'
+
+  - id: koto
+    name: 'Koto'
+    group: studios
+    type: html
+    url: https://koto.com/work
+    link_pattern: '/projects/'
+
+  - id: imaginary_forces
+    name: 'Imaginary Forces'
+    group: studios
+    type: html
+    url: https://imaginaryforces.com/project/widows-bay
+    link_pattern: '/what-we-do/'
+
+  - id: husmee
+    name: 'Husmee'
+    group: studios
+    type: html
+    url: https://www.husmee.com/
+    link_pattern: '/proyectos/'
+
+  - id: high_tide
+    name: 'High Tide'
+    group: studios
+    type: html
+    url: https://hightidenyc.com/work
+    link_pattern: '/work/'
+
+  - id: jason_schulte_design
+    name: 'Jason Schulte Design'
+    group: studios
+    type: html
+    url: https://visitoffice.com/work
+    link_pattern: '/work/'
+
+  - id: glasfurd_walker
+    name: 'Glasfurd & Walker'
+    group: studios
+    type: html
+    url: https://glasfurdandwalker.com/work/
+    link_pattern: '/project/'
+
+  - id: hear_the_youth
+    name: 'Hear The Youth'
+    group: studios
+    type: html
+    url: https://heartheyouth.com/
+    link_pattern: '/cases/'
+
+  - id: brave
+    name: 'Brave'
+    group: studios
+    type: html
+    url: https://studiobrave.com.au/projects/branding/
+    link_pattern: '/work/'
+
+  - id: less_andbetter
+    name: 'Less-AndBetter'
+    group: studios
+    type: html
+    url: https://www.l-ab.eu/work
+    link_pattern: '/work/'
+
+  - id: lovegunn
+    name: 'LoveGunn'
+    group: studios
+    type: html
+    url: https://www.lovegunn.co/work
+    link_pattern: '/work/'
+
+  - id: lava
+    name: 'Lava'
+    group: studios
+    type: html
+    url: https://lava.nl/work/
+    link_pattern: '/work/'
+
+  - id: mad
+    name: 'MAD'
+    group: studios
+    type: html
+    url: https://mad.ac/work
+    link_pattern: '/work/'
+
+  - id: hoodzpah
+    name: 'Hoodzpah'
+    group: studios
+    type: html
+    url: https://hoodzpahdesign.com/work/
+    link_pattern: '/portfolio/'
+
+  - id: josephmark
+    name: 'Josephmark'
+    group: studios
+    type: html
+    url: https://josephmark.studio/work
+    link_pattern: '/work/'
+
+  - id: design_dept
+    name: 'Design Dept'
+    group: studios
+    type: html
+    url: https://designdept.studio/work
+    link_pattern: '/work/'
+
+  - id: anothern_creative
+    name: 'Anothern Creative'
+    group: studios
+    type: html
+    url: https://anothern-creative.com/work/
+    link_pattern: '/work/'
+
+  - id: lippincott
+    name: 'Lippincott'
+    group: studios
+    type: html
+    url: https://www.lippincott.com/work/
+    link_pattern: '/work/'
+
+  - id: lundgren_lindqvist
+    name: 'Lundgren+Lindqvist'
+    group: studios
+    type: html
+    url: https://www.lundgrenlindqvist.se/projects/digital
+    link_pattern: '/projects/'
+
+  - id: meat
+    name: 'Meat'
+    group: studios
+    type: html
+    url: https://meat.studio/work
+    link_pattern: '/work/'
+
+  - id: matter_of
+    name: 'Matter Of'
+    group: studios
+    type: html
+    url: https://matterof.online/project-category/animation/
+    link_pattern: '/project-category/'
+
+  - id: landscape
+    name: 'Landscape'
+    group: studios
+    type: html
+    url: https://thisislandscape.com/work/
+    link_pattern: '/projects/'
+
+  - id: luminous_design_group
+    name: 'Luminous Design Group'
+    group: studios
+    type: html
+    url: https://www.luminous.gr/
+    link_pattern: '/projects/'
+
+  - id: l3_branding
+    name: 'L3 Branding'
+    group: studios
+    type: html
+    url: https://www.l3branding.com/works
+    link_pattern: '/work/'
+
+  - id: modestworks
+    name: 'ModestWorks'
+    group: studios
+    type: html
+    url: https://www.modestworks.com/
+    link_pattern: '/works/'
+
+  - id: hyperfocus
+    name: 'Hyperfocus'
+    group: studios
+    type: html
+    url: https://hyperfocus.cc/work
+    link_pattern: '/project/'
+
+  - id: momkai_design_agency
+    name: 'Momkai Design Agency'
+    group: studios
+    type: html
+    url: https://momkai.com/work
+    link_pattern: '/cases/'
+
+  - id: husky_fox
+    name: 'Husky Fox'
+    group: studios
+    type: html
+    url: https://huskyfox.com/projects
+    link_pattern: '/projects/'
+
+  - id: morcos_key
+    name: 'Morcos Key'
+    group: studios
+    type: html
+    url: https://www.morcoskey.com/archive
+    link_pattern: '/projects/'
+
+  - id: mother_design
+    name: 'Mother Design'
+    group: studios
+    type: html
+    url: https://www.motherdesign.com/work
+    link_pattern: '/work/'
+
+  - id: grilli_type
+    name: 'Grilli Type'
+    group: studios
+    type: html
+    url: https://www.grillitype.com/work
+    link_pattern: '/typeface/'
+
+  - id: matchstic
+    name: 'Matchstic'
+    group: studios
+    type: html
+    url: https://matchstic.com/work
+    link_pattern: '/work/'
+
+  - id: instrument
+    name: 'Instrument'
+    group: studios
+    type: html
+    url: https://www.instrument.com/work
+    link_pattern: '/work/'
+
+  - id: mucho
+    name: 'Mucho'
+    group: studios
+    type: html
+    url: https://wearemucho.com/work
+    link_pattern: '/work/'
+
+  - id: little_troop
+    name: 'Little Troop'
+    group: studios
+    type: html
+    url: https://littletroop.com/
+    link_pattern: '/work/'
+
+  - id: norday
+    name: 'Norday'
+    group: studios
+    type: html
+    url: https://norday.nl/cases
+    link_pattern: '/cases/'
+
+  - id: neizvestnie
+    name: 'Neizvestnie'
+    group: studios
+    type: html
+    url: https://neizvestnie.com/projects/lamoda
+    link_pattern: '/projects/'
+
+  - id: noramble
+    name: 'Noramble'
+    group: studios
+    type: html
+    url: https://noramble.co.uk/work
+    link_pattern: '/work/'
+
+  - id: need_thinking
+    name: 'Need Thinking'
+    group: studios
+    type: html
+    url: https://www.needthinking.com/projects/
+    link_pattern: '/work/'
+
+  - id: multiadaptor
+    name: 'MultiAdaptor'
+    group: studios
+    type: html
+    url: https://www.multiadaptor.com/work/jacquard/
+    link_pattern: '/work/'
+
+  - id: moniker
+    name: 'Moniker'
+    group: studios
+    type: html
+    url: https://monikersf.com/work/
+    link_pattern: '/project/'
+
+  - id: hondo
+    name: 'Hondo'
+    group: studios
+    type: html
+    url: https://www.hondo.studio/work-hondo
+    link_pattern: '/project/'
+
+  - id: omse
+    name: 'OMSE'
+    group: studios
+    type: html
+    url: https://www.omse.co/work
+    link_pattern: '/work/'
+
+  - id: mouthwash
+    name: 'Mouthwash'
+    group: studios
+    type: html
+    url: https://mouthwash.studio/work/
+    link_pattern: '/project/'
+
+  - id: onari
+    name: 'Onari'
+    group: studios
+    type: html
+    url: https://onariprojects.ch/
+    link_pattern: '/projects/'
+
+  - id: made_thought
+    name: 'Made Thought'
+    group: studios
+    type: html
+    url: https://madethought.com/work/beauty/
+    link_pattern: '/work/'
+
+  - id: new_genre
+    name: 'New Genre'
+    group: studios
+    type: html
+    url: https://www.newgenre.studio/work
+    link_pattern: '/work/'
+
+  - id: matta
+    name: 'Matta'
+    group: studios
+    type: html
+    url: https://makeitmatta.com/work/
+    link_pattern: '/work/'
+
+  - id: nb
+    name: 'NB'
+    group: studios
+    type: html
+    url: https://nbstudio.co.uk/work/
+    link_pattern: '/work/'
+
+  - id: media_work
+    name: 'Media Work'
+    group: studios
+    type: html
+    url: https://media.work/
+    link_pattern: '/project/'
+
+  - id: nomad
+    name: 'Nomad'
+    group: studios
+    type: html
+    url: https://www.nomadstudio.com/work
+    link_pattern: '/work/'
+
+  - id: otherness
+    name: 'Otherness'
+    group: studios
+    type: html
+    url: https://www.otherness.design/work
+    link_pattern: '/work/'
+
+  - id: ncstudio
+    name: 'NCstudio'
+    group: studios
+    type: html
+    url: https://ncstudio.co.uk/work/
+    link_pattern: '/work/'
+
+  - id: ohmy
+    name: 'OHMY'
+    group: studios
+    type: html
+    url: https://www.ohmy.studio/work
+    link_pattern: '/work/'
+
+  - id: oker
+    name: 'Oker'
+    group: studios
+    type: html
+    url: https://oker.com/work/
+    link_pattern: '/projects/'
+
+  - id: ozon
+    name: 'Ozon'
+    group: studios
+    type: html
+    url: https://ozon.studio/work
+    link_pattern: '/projects/'
+
+  - id: pablo_rochat_studio
+    name: 'Pablo Rochat Studio'
+    group: studios
+    type: html
+    url: https://www.pablorochat.com/recent-work
+    link_pattern: '/recent-work/'
+
+  - id: only_studio
+    name: 'Only Studio'
+    group: studios
+    type: html
+    url: https://www.onlystudio.com/work
+    link_pattern: '/work/'
+
+  - id: miles
+    name: 'Miles'
+    group: studios
+    type: html
+    url: https://studiomiles.ca/projets
+    link_pattern: '/projets/'
+
+  - id: order_design
+    name: 'Order Design'
+    group: studios
+    type: html
+    url: https://order.design/
+    link_pattern: '/project/'
+
+  - id: plankton
+    name: 'Plankton'
+    group: studios
+    type: html
+    url: https://www.studioplankton.com/work
+    link_pattern: '/work/'
+
+  - id: onmi
+    name: 'Onmi'
+    group: studios
+    type: html
+    url: https://www.itsnicethat.com/articles/onmi-design-discover-graphic-design-270824
+    link_pattern: '/articles/'
+
+  - id: otherway
+    name: 'Otherway'
+    group: studios
+    type: html
+    url: https://www.otherway.com/work
+    link_pattern: '/work/'
+
+  - id: plusminus
+    name: 'Plusminus'
+    group: studios
+    type: html
+    url: https://plusminus.studio/project
+    link_pattern: '/project/'
+
+  - id: jo_cutri_studio
+    name: 'Jo Cutri Studio'
+    group: studios
+    type: html
+    url: https://jocutristudio.com/
+    link_pattern: '/portfolio/'
+
+  - id: play_studio
+    name: 'Play Studio'
+    group: studios
+    type: html
+    url: https://play.studio/work
+    link_pattern: '/work/'
+
+  - id: pacifica
+    name: 'Pacifica'
+    group: studios
+    type: html
+    url: https://thisispacifica.com/work/
+    link_pattern: '/work/'
+
+  - id: mast
+    name: 'Mast'
+    group: studios
+    type: html
+    url: https://studiomast.co/projects/
+    link_pattern: '/projects/'
+
+  - id: parker
+    name: 'Parker'
+    group: studios
+    type: html
+    url: https://www.parker.studio/work
+    link_pattern: '/work/'
+
+  - id: pony
+    name: 'Pony'
+    group: studios
+    type: html
+    url: https://pony.studio/design-work
+    link_pattern: '/design-work/'
+
+  - id: opposite
+    name: 'Opposite'
+    group: studios
+    type: html
+    url: https://oppositehq.com/portfolio/
+    link_pattern: '/portfolio/'
+
+  - id: proportion
+    name: 'Proportion'
+    group: studios
+    type: html
+    url: https://www.proportiondesign.com/work
+    link_pattern: '/project/'
+
+  - id: previously_unavailable
+    name: 'Previously Unavailable'
+    group: studios
+    type: html
+    url: https://previously.co/projects/chanel-leota-our-latest-pu-x-aut-scholarship-recipient
+    link_pattern: '/projects/'
+
+  - id: rtc
+    name: 'RTC'
+    group: studios
+    type: html
+    url: https://www.rtc.studio/projects/project-1
+    link_pattern: '/projects/'
+
+  - id: lucky_dip
+    name: 'Lucky Dip'
+    group: studios
+    type: html
+    url: https://luckydip.studio/work/
+    link_pattern: '/work/'
+
+  - id: prost
+    name: 'Prost'
+    group: studios
+    type: html
+    url: https://prost.work/work
+    link_pattern: '/work/'
+
+  - id: primary
+    name: 'Primary'
+    group: studios
+    type: html
+    url: https://www.primary.studio/work
+    link_pattern: '/work/'
+
+  - id: rudy
+    name: 'Rudy'
+    group: studios
+    type: html
+    url: https://ru-dy.com/work
+    link_pattern: '/work/'
+
+  - id: pentagram
+    name: 'Pentagram'
+    group: studios
+    type: html
+    url: https://www.pentagram.com/work
+    link_pattern: '/work/'
+
+  - id: ragged_edge
+    name: 'Ragged Edge'
+    group: studios
+    type: html
+    url: https://raggededge.com/partnerships
+    link_pattern: '/partnerships/'
+
+  - id: redefine
+    name: 'Redefine'
+    group: studios
+    type: html
+    url: https://www.redefinestudio.co.uk/projects
+    link_pattern: '/projects/'
+
+  - id: saffron
+    name: 'Saffron'
+    group: studios
+    type: html
+    url: https://saffron-consultants.com/work
+    link_pattern: '/work/'
+
+  - id: milkshake
+    name: 'Milkshake'
+    group: studios
+    type: html
+    url: https://milkshake.studio/work
+    link_pattern: '/project/'
+
+  - id: sdl
+    name: 'SDL'
+    group: studios
+    type: html
+    url: https://www.stockholmdesignlab.se/work
+    link_pattern: '/work/'
+
+  - id: plural
+    name: 'PLURAL®'
+    group: studios
+    type: html
+    url: https://pluralbranding.com/proyectos
+    link_pattern: '/work/'
+
+  - id: lettera7
+    name: 'Lettera7'
+    group: studios
+    type: html
+    url: https://www.lettera7.design/work
+    link_pattern: '/work/'
+
+  - id: nan
+    name: 'NaN'
+    group: studios
+    type: html
+    url: https://www.nan.xyz/projects/
+    link_pattern: '/fonts/'
+
+  - id: sylvain
+    name: 'SYLVAIN'
+    group: studios
+    type: html
+    url: https://sylvain.co/work
+    link_pattern: '/work/'
+
+  - id: snhetta
+    name: 'Snøhetta'
+    group: studios
+    type: html
+    url: https://www.snohetta.com/projects
+    link_pattern: '/projects/'
+
+  - id: socialclub
+    name: 'Socialclub'
+    group: studios
+    type: html
+    url: https://www.socialclubparis.com/
+    link_pattern: '/project/'
+
+  - id: slope
+    name: 'Slope'
+    group: studios
+    type: html
+    url: https://www.slope.agency/work
+    link_pattern: '/case-studies/'
+
+  - id: parcour
+    name: 'Parcour'
+    group: studios
+    type: html
+    url: https://www.parcour.studio/works/
+    link_pattern: '/project/'
+
+  - id: socio
+    name: 'Socio'
+    group: studios
+    type: html
+    url: https://www.sociodesign.co.uk/projects/modern-chemistry-by-boots
+    link_pattern: '/projects/'
+
+  - id: oddity
+    name: 'Oddity'
+    group: studios
+    type: html
+    url: https://odditystudio.com/work
+    link_pattern: '/work/'
+
+  - id: indice
+    name: 'Indice'
+    group: studios
+    type: html
+    url: https://indice.studio/projects
+    link_pattern: '/projects/'
+
+  - id: smlxl
+    name: 'SMLXL'
+    group: studios
+    type: html
+    url: https://smlxl.company/projects/
+    link_pattern: '/project/'
+
+  - id: robot_food
+    name: 'Robot Food'
+    group: studios
+    type: html
+    url: https://www.robot-food.com/work
+    link_pattern: '/work/'
+
+  - id: modem
+    name: 'Modem'
+    group: studios
+    type: html
+    url: https://modemworks.com/projects/
+    link_pattern: '/projects/'
+
+  - id: nihilo
+    name: 'Nihilo'
+    group: studios
+    type: html
+    url: https://nihilo.agency/projects
+    link_pattern: '/project/'
+
+  - id: spass
+    name: 'Spass'
+    group: studios
+    type: html
+    url: https://studiospass.com/work/
+    link_pattern: '/work/'
+
+  - id: ordinary_people
+    name: 'Ordinary People'
+    group: studios
+    type: html
+    url: https://ordinarypeople.info/work
+    link_pattern: '/work/'
+
+  - id: tatil_design
+    name: 'Tátil Design'
+    group: studios
+    type: html
+    url: https://site.tatil.com.br/work
+    link_pattern: '/cases/'
+
+  - id: tactyc_studio
+    name: 'TACTYC Studio'
+    group: studios
+    type: html
+    url: https://www.tactyc.studio/works
+    link_pattern: '/project/'
+
+  - id: sons_daughters_id
+    name: 'Sons & Daughters ID'
+    group: studios
+    type: html
+    url: https://sonsdaughtersid.com/work
+    link_pattern: '/work/'
+
+  - id: studio8585
+    name: 'Studio8585'
+    group: studios
+    type: html
+    url: https://www.studio8585.com/work
+    link_pattern: '/work/'
+
+  - id: stink
+    name: 'Stink'
+    group: studios
+    type: html
+    url: https://www.stinkstudios.com/work
+    link_pattern: '/work/'
+
+  - id: refik_anadol
+    name: 'Refik Anadol'
+    group: studios
+    type: html
+    url: https://refikanadolstudio.com/projects/
+    link_pattern: '/projects/'
+
+  - id: saint_urbain
+    name: 'Saint Urbain'
+    group: studios
+    type: html
+    url: https://www.sainturbain.com/work/
+    link_pattern: '/work/'
+
+  - id: studio_chapeaux
+    name: 'Studio Chapeaux'
+    group: studios
+    type: html
+    url: https://studiochapeaux.com/work
+    link_pattern: '/projekt/'
+
+  - id: the_colour_club
+    name: 'The Colour Club'
+    group: studios
+    type: html
+    url: https://www.thecolourclub.com.au/projects
+    link_pattern: '/projects/'
+
+  - id: moffitt_moffitt
+    name: 'Moffitt.Moffitt.'
+    group: studios
+    type: html
+    url: https://moffittmoffitt.com/
+    link_pattern: '/project/'
+
+  - id: the_clients
+    name: 'The Clients'
+    group: studios
+    type: html
+    url: https://theclients.ru/projects
+    link_pattern: '/projects/'
+
+  - id: the_power_of_friendship
+    name: 'The Power of Friendship'
+    group: studios
+    type: html
+    url: https://www.tpof.studio/work
+    link_pattern: '/projects/'
+
+  - id: pengguin
+    name: 'Pengguin'
+    group: studios
+    type: html
+    url: https://pengguin.hk/work/
+    link_pattern: '/works/'
+
+  - id: territory
+    name: 'Territory'
+    group: studios
+    type: html
+    url: https://territorystudio.com/project-category/screen-graphics/
+    link_pattern: '/project/'
+
+  - id: the_company_you_keep
+    name: 'The Company You Keep'
+    group: studios
+    type: html
+    url: https://www.tcyk.com.au/information
+    link_pattern: '/commissions/'
+
+  - id: size
+    name: 'Size'
+    group: studios
+    type: html
+    url: https://studio-size.com/work/
+    link_pattern: '/work/'
+
+  - id: the_collected_works
+    name: 'The Collected Works'
+    group: studios
+    type: html
+    url: https://www.thecollectedworks.com/
+    link_pattern: '/project/'
+
+  - id: the_slug
+    name: 'The Slug'
+    group: studios
+    type: html
+    url: https://www.slugglobal.com/case-studies
+    link_pattern: '/case-studies/'
+
+  - id: the_mill
+    name: 'The Mill'
+    group: studios
+    type: html
+    url: https://www.themill.com/work
+    link_pattern: '/work/'
+
+  - id: stupid
+    name: 'Stupid'
+    group: studios
+    type: html
+    url: https://stupid-studio.com/work
+    link_pattern: '/work/'
+
+  - id: omi
+    name: 'OMI'
+    group: studios
+    type: html
+    url: https://ofmyimagination.com/work/
+    link_pattern: '/project/'
+
+  - id: too_gallus
+    name: 'Too Gallus'
+    group: studios
+    type: html
+    url: https://toogallus.com/projects
+    link_pattern: '/project/'
+
+  - id: toward
+    name: 'Toward'
+    group: studios
+    type: html
+    url: https://toward.studio/work
+    link_pattern: '/work/'
+
+  - id: studio_last
+    name: 'Studio Last'
+    group: studios
+    type: html
+    url: https://studio-last.com/archive/working-women/
+    link_pattern: '/archive/'
+
+  - id: tubik
+    name: 'Tubik'
+    group: studios
+    type: html
+    url: https://tubikstudio.com/works
+    link_pattern: '/works/'
+
+  - id: snask
+    name: 'Snask'
+    group: studios
+    type: html
+    url: https://snask.com/our-work/
+    link_pattern: '/case/'
+
+  - id: thisaway
+    name: 'Thisaway'
+    group: studios
+    type: html
+    url: https://thisaway.co/work
+    link_pattern: '/work/'
+
+  - id: the_little_labs
+    name: 'The Little Labs'
+    group: studios
+    type: html
+    url: https://thelittlelabs.com/work
+    link_pattern: '/work/'
+
+  - id: tomorrow_bureau
+    name: 'Tomorrow Bureau'
+    group: studios
+    type: html
+    url: https://www.tomorrowbureau.io/projects
+    link_pattern: '/projects/'
+
+  - id: twist
+    name: 'Twist'
+    group: studios
+    type: html
+    url: https://www.designbytwist.com/work
+    link_pattern: '/work/'
+
+  - id: verve
+    name: 'Verve'
+    group: studios
+    type: html
+    url: https://verveagency.com/work
+    link_pattern: '/work/'
+
+  - id: unfound
+    name: 'Unfound'
+    group: studios
+    type: html
+    url: https://www.unfound.studio/work
+    link_pattern: '/work/'
+
+  - id: turner_duckworth
+    name: 'Turner Duckworth'
+    group: studios
+    type: html
+    url: https://turnerduckworth.com/
+    link_pattern: '/work/'
+
+  - id: vrints_kolsteren
+    name: 'Vrints-Kolsteren'
+    group: studios
+    type: html
+    url: https://www.vrints-kolsteren.com/work
+    link_pattern: '/project/'
+
+  - id: velvele
+    name: 'Velvele'
+    group: studios
+    type: html
+    url: https://velvele.studio/work
+    link_pattern: '/work/'
+
+  - id: villagers
+    name: 'Villagers'
+    group: studios
+    type: html
+    url: https://villagers.studio/projects
+    link_pattern: '/projects/'
+
+  - id: team
+    name: 'Team'
+    group: studios
+    type: html
+    url: https://team.design/work/
+    link_pattern: '/work/'
+
+  - id: transport
+    name: 'Transport'
+    group: studios
+    type: html
+    url: https://transportnewyork.com/work/
+    link_pattern: '/work/'
+
+  - id: select
+    name: 'Select'
+    group: studios
+    type: html
+    url: https://studioselect.co/
+    link_pattern: '/project/'
+
+  - id: white_bear
+    name: 'White Bear'
+    group: studios
+    type: html
+    url: https://whitebearstudio.com/work/
+    link_pattern: '/work/'
+
+  - id: thrist
+    name: 'Thrist'
+    group: studios
+    type: html
+    url: https://thirstcraft.com/work/
+    link_pattern: '/work/'
+
+  - id: hunt
+    name: 'hunt'
+    group: studios
+    type: html
+    url: https://www.hunt-branding.be/
+    link_pattern: '/case/'
+
+  - id: six_cinquieme
+    name: 'Six Cinquième'
+    group: studios
+    type: html
+    url: https://www.sixcinquieme.com/projects/
+    link_pattern: '/projects/'
+
+  - id: wolff_olins
+    name: 'Wolff Olins'
+    group: studios
+    type: html
+    url: https://www.wolffolins.com/work
+    link_pattern: '/work/'
+
+  - id: without
+    name: 'Without'
+    group: studios
+    type: html
+    url: https://without.studio/work/
+    link_pattern: '/work/'
+
+  - id: underline
+    name: 'Underline'
+    group: studios
+    type: html
+    url: https://underlinestudio.com/work/
+    link_pattern: '/works/'
+
+  - id: vju
+    name: 'Vju'
+    group: studios
+    type: html
+    url: https://vju.se/case/
+    link_pattern: '/case/'
+
+  - id: pop_pac
+    name: 'Pop & Pac'
+    group: studios
+    type: html
+    url: https://www.pop-pac.com/projects/redroaster-coffee-roasters/
+    link_pattern: '/projects/'
+
+  - id: vanderbrand
+    name: 'Vanderbrand'
+    group: studios
+    type: html
+    url: https://vanderbrand.com/work
+    link_pattern: '/work/'
+
+  - id: the_chase
+    name: 'The Chase'
+    group: studios
+    type: html
+    url: https://www.thechase.co.uk/projects/
+    link_pattern: '/projects/'
+
+  - id: vccp
+    name: 'VCCP'
+    group: studios
+    type: html
+    url: https://www.vccp.com/global-work/
+    link_pattern: '/work/'
+
+  - id: werklig
+    name: 'Werklig'
+    group: studios
+    type: html
+    url: https://www.werklig.com/success-stories
+    link_pattern: '/projects/'
+
+  - id: mpfxdesign
+    name: 'mpfxdesign'
+    group: studios
+    type: html
+    url: https://www.mpfxdesign.com/pt/projects
+    link_pattern: '/pt/'
+
+  - id: wewantmore
+    name: 'WeWantMore'
+    group: studios
+    type: html
+    url: https://wewantmore.studio/work
+    link_pattern: '/work/'
+
+  - id: voodoo_voodoo
+    name: 'Voodoo Voodoo'
+    group: studios
+    type: html
+    url: https://voodoovoodoo.net/
+    link_pattern: '/project/'
+
+  - id: vista
+    name: 'vista'
+    group: studios
+    type: html
+    url: https://www.studiovista.de/projects
+    link_pattern: '/projects/'
+
+  - id: newkid
+    name: 'newkid'
+    group: studios
+    type: html
+    url: https://newkid.services/work
+    link_pattern: '/work/'
+
+  - id: works
+    name: 'Works'
+    group: studios
+    type: html
+    url: https://works.studio/
+    link_pattern: '/work/'
+
+  - id: studio_work
+    name: 'Studio Work'
+    group: studios
+    type: html
+    url: https://studiowork.com.au/
+    link_pattern: '/work/'
+
+  - id: universal_favourite
+    name: 'Universal Favourite'
+    group: studios
+    type: html
+    url: https://universalfavourite.com.au/work
+    link_pattern: '/work/'
+
+  - id: wdw
+    name: 'WDW'
+    group: studios
+    type: html
+    url: https://wdw.com/
+    link_pattern: '/projects/'
+
+  - id: zak
+    name: 'ZAK'
+    group: studios
+    type: html
+    url: https://wearezak.com/projects/
+    link_pattern: '/projects/'
+
+  - id: yukiko
+    name: 'Yukiko'
+    group: studios
+    type: html
+    url: https://y-u-k-i-k-o.com/projects/urbane-kunste-ruhr/
+    link_pattern: '/projects/'
+
+  - id: mainstudio
+    name: 'mainstudio'
+    group: studios
+    type: html
+    url: https://mainstudio.com/projects/
+    link_pattern: '/editorial/'
+
+  - id: fagerstrom
+    name: 'fagerström'
+    group: studios
+    type: html
+    url: https://fagerstrom.studio/
+    link_pattern: '/work/'
+
+  - id: unitedby
+    name: 'unitedby'
+    group: studios
+    type: html
+    url: https://unitedby.pt/work/
+    link_pattern: '/content/'
+
+  - id: mn_associates
+    name: 'M—N Associates'
+    group: studios
+    type: html
+    url: https://m-n.associates/works/
+    link_pattern: '/works/'
+
+  - id: toby_ng
+    name: 'Toby Ng'
+    group: studios
+    type: html
+    url: https://www.toby-ng.com/work/
+    link_pattern: '/works/'
+
+  - id: typetype
+    name: 'TypeType®'
+    group: studios
+    type: html
+    url: https://typetype.ru/custom-fonts/
+    link_pattern: '/fonts/'
+
+  - id: woork
+    name: 'Woork'
+    group: studios
+    type: html
+    url: https://thewoork.eu/work
+    link_pattern: '/project/'
+
+  - id: kruppa_hosk
+    name: 'Kruppa Hosk'
+    group: studios
+    type: html
+    url: https://www.kurppahosk.com/work
+    link_pattern: '/work/'
+
+  - id: taxi
+    name: 'Taxi'
+    group: studios
+    type: html
+    url: https://taxistudio.com/work
+    link_pattern: '/work/'
+
+  # ═══════════ 📐 Разборы кейсов  (12) ═══════════
 
   - id: brandnew
     name: 'Brand New'
-    group: media
+    group: cases_media
     type: rss
     url: https://www.underconsideration.com/brandnew/atom.xml
 
-  - id: itsnicethat
-    name: 'It''s Nice That'
-    group: media
-    type: rss
-    url: http://feeds2.feedburner.com/itsnicethat/SlXC
-
-  - id: creativereview
-    name: 'Creative Review'
-    group: media
-    type: rss
-    url: https://www.creativereview.co.uk/feed/
-
   - id: designboom
     name: 'Designboom'
-    group: media
+    group: cases_media
     type: rss
     url: https://www.designboom.com/feed/
 
   - id: dezeen
     name: 'Dezeen'
-    group: media
+    group: cases_media
     type: rss
     url: https://www.dezeen.com/feed/
 
   - id: identitydesigned
     name: 'Identity Designed'
-    group: media
+    group: cases_media
     type: rss
     url: https://identitydesigned.com/feed/
 
   - id: fontsinuse
     name: 'Fonts In Use'
-    group: media
+    group: cases_media
     type: rss
     url: https://fontsinuse.com/main.rss
 
   - id: logodesignlove
     name: 'Logo Design Love'
-    group: media
+    group: cases_media
     type: rss
     url: https://www.logodesignlove.com/feed
 
-  - id: awwwards
-    name: 'Awwwards'
-    group: media
+  - id: bpando
+    name: 'BP&O'
+    group: cases_media
     type: rss
-    url: https://www.awwwards.com/blog/feed/
+    url: https://bpando.org/feed/
 
-  - id: core77
-    name: 'Core77'
-    group: media
+  - id: packaging_world
+    name: 'Packaging of the World'
+    group: cases_media
     type: rss
-    url: https://www.core77.com/feed
+    url: https://packagingoftheworld.com/feed/
 
-  - id: sostav
-    name: 'Sostav'
-    group: media
+  - id: abduzeedo
+    name: 'Abduzeedo'
+    group: cases_media
     type: rss
-    url: https://www.sostav.ru/rss
-    include_keywords: ['дизайн', 'брендинг', 'ребрендинг', 'логотип', 'айдентик', 'упаковк', 'фирменн', 'шрифт', 'визуальн']
+    url: https://abduzeedo.com/rss.xml
 
-  - id: habr_design
-    name: 'Хабр / Дизайн'
-    group: media
+  - id: design_week
+    name: 'Design Week'
+    group: cases_media
     type: rss
-    url: https://habr.com/ru/rss/hubs/design/articles/?fl=ru
+    url: https://www.designweek.co.uk/feed/
 
-  # ═══════════ ✈️ Telegram-каналы  (28) ═══════════
+  - id: creative_boom
+    name: 'Creative Boom'
+    group: cases_media
+    type: rss
+    url: https://www.creativeboom.com/feed/
+
+  - id: brandidentity
+    name: 'The Brand Identity'
+    group: cases_media
+    type: html
+    url: https://the-brandidentity.com/
+    link_pattern: '/project/'
+
+  # ═══════════ ✈️ Telegram  (5) ═══════════
 
   - id: tg_sptlght
     name: 'D1S1 Spotlight'
     group: telegram
     type: telegram
     channel: sptlght
-    mode: web
-
-  - id: tg_designpub
-    name: 'Дизайн-кабак'
-    group: telegram
-    type: telegram
-    channel: designpub
-    mode: web
-
-  - id: tg_ony
-    name: 'ONY (канал)'
-    group: telegram
-    type: telegram
-    channel: onyagency
-    mode: web
-
-  - id: tg_designmate
-    name: 'Design Mate'
-    group: telegram
-    type: telegram
-    channel: designmate
-    mode: web
-
-  - id: tg_glvrd
-    name: 'Максим Ильяхов'
-    group: telegram
-    type: telegram
-    channel: glvrdru
-    mode: web
-
-  - id: tg_sobakawow
-    name: 'Собака Павлова'
-    group: telegram
-    type: telegram
-    channel: sobakawow
-    mode: api
-    enabled: false
-
-  - id: tg_suprematika
-    name: 'Супрематика'
-    group: telegram
-    type: telegram
-    channel: suprematika
-    mode: api
-    enabled: false
-
-  - id: tg_glvrdru
-    name: 'Максим Ильяхов'
-    group: telegram
-    type: telegram
-    channel: glvrdru
-    mode: web
-
-  - id: tg_posterino
-    name: 'Posterino'
-    group: telegram
-    type: telegram
-    channel: posterino
-    mode: web
-
-  - id: tg_awdee
-    name: 'Оди'
-    group: telegram
-    type: telegram
-    channel: awdee
-    mode: web
-
-  - id: tg_logomachinee
-    name: 'Секретный канал Логомашины'
-    group: telegram
-    type: telegram
-    channel: logomachinee
-    mode: web
-
-  - id: tg_designsniper
-    name: 'Дизайн-снайпер'
-    group: telegram
-    type: telegram
-    channel: designsniper
     mode: web
 
   - id: tg_artlebedev
@@ -915,53 +2384,11 @@ sources:
     channel: artlebedev
     mode: web
 
-  - id: tg_mr_mad_rabbit
-    name: 'MAD RABBIT'
-    group: telegram
-    type: telegram
-    channel: mr_mad_rabbit
-    mode: web
-
-  - id: tg_newfonts
-    name: 'Новые шрифты'
-    group: telegram
-    type: telegram
-    channel: newfonts
-    mode: web
-
-  - id: tg_mozhno
-    name: 'Визуальные приёмы'
-    group: telegram
-    type: telegram
-    channel: mozhno
-    mode: web
-
-  - id: tg_ayuev
-    name: 'ARE YOU EVE'
-    group: telegram
-    type: telegram
-    channel: ayuev
-    mode: web
-
-  - id: tg_graphicstory
-    name: 'graphic story'
-    group: telegram
-    type: telegram
-    channel: graphicstory
-    mode: web
-
   - id: tg_designgest
     name: 'Designgest'
     group: telegram
     type: telegram
     channel: designgest
-    mode: web
-
-  - id: tg_typetoday
-    name: 'type.today'
-    group: telegram
-    type: telegram
-    channel: typetoday
     mode: web
 
   - id: tg_onyagency
@@ -977,155 +2404,3 @@ sources:
     type: telegram
     channel: depot_branding
     mode: web
-
-  - id: tg_ponravu
-    name: 'Что понравилось в картинке'
-    group: telegram
-    type: telegram
-    channel: ponravu
-    mode: web
-
-  - id: tg_barbanel
-    name: 'DIMABARBANEL'
-    group: telegram
-    type: telegram
-    channel: barbanel
-    mode: web
-
-  - id: tg_hsedesignlab
-    name: 'Лаборатория дизайна ВШЭ'
-    group: telegram
-    type: telegram
-    channel: hsedesignlab
-    mode: web
-
-  - id: tg_designworkout
-    name: 'DESIGNWORKOUT'
-    group: telegram
-    type: telegram
-    channel: designworkout
-    mode: web
-
-  - id: tg_gurovplus
-    name: 'Gurov+'
-    group: telegram
-    type: telegram
-    channel: gurovplus
-    mode: web
-
-  - id: tg_fortyd
-    name: '40D'
-    group: telegram
-    type: telegram
-    channel: fortyD
-    mode: web
-
-  # ═══════════ ▶️ YouTube  (18) ═══════════
-
-  - id: yt_figma
-    name: 'Figma'
-    group: youtube
-    type: rss
-    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCQsVmhSa4X-G3lHlUtejzLA
-
-  - id: yt_nielsen_norman_group
-    name: 'Nielsen Norman Group'
-    group: youtube
-    type: rss
-    url: https://www.youtube.com/feeds/videos.xml?channel_id=UC2oCugzU6W8-h95W7eBTUEg
-
-  - id: yt_apple_developer
-    name: 'Apple Developer'
-    group: youtube
-    type: rss
-    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCwrVwiJllwhJUKXKmjLcckQ
-
-  - id: yt_micha_malewicz
-    name: 'Michał Malewicz'
-    group: youtube
-    type: rss
-    url: https://www.youtube.com/feeds/videos.xml?channel_id=UC_Dq0oUEi7uXhdUX8prunbw
-
-  - id: yt_mizko
-    name: 'Mizko'
-    group: youtube
-    type: rss
-    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCZJkZy008cQjqkJeKpJu8tA
-
-  - id: yt_femke_van_schoonhoven
-    name: 'Femke van Schoonhoven'
-    group: youtube
-    type: rss
-    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCWUGGwfTfJ0-2jUS3dZqOJA
-
-  - id: yt_jesse_showalter
-    name: 'Jesse Showalter'
-    group: youtube
-    type: rss
-    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCvBGFeXbBrq3W9_0oNLJREQ
-
-  - id: yt_charlimarietv
-    name: 'CharliMarieTV'
-    group: youtube
-    type: rss
-    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCScRSwdX0t31gjk3MYXIuYQ
-
-  - id: yt_designcourse
-    name: 'DesignCourse'
-    group: youtube
-    type: rss
-    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCVyRiMvfUNMA1UPlDPzG5Ow
-
-  - id: yt_smashing_magazine
-    name: 'Smashing Magazine'
-    group: youtube
-    type: rss
-    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCSDtqcJ8ZXviPrEcj1vuLiQ
-
-  - id: yt_linear
-    name: 'Linear'
-    group: youtube
-    type: rss
-    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCWivgq8xSp7QcXVyPHml-Aw
-
-  - id: yt_vercel
-    name: 'Vercel'
-    group: youtube
-    type: rss
-    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCLq8gNoee7oXM7MvTdjyQvA
-
-  - id: yt_byuro_gorbunova
-    name: 'Бюро Горбунова'
-    group: youtube
-    type: rss
-    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCSEmxO97jPGhrja7HhNzXMw
-
-  - id: yt_the_futur
-    name: 'The Futur'
-    group: youtube
-    type: rss
-    url: https://www.youtube.com/feeds/videos.xml?channel_id=UC-b3c7kxa5vU-bnmaROgvog
-
-  - id: yt_chris_do
-    name: 'Chris Do'
-    group: youtube
-    type: rss
-    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCWqGiF72rubTwZLNoKT9Y1A
-
-  - id: yt_flux_academy
-    name: 'Flux Academy'
-    group: youtube
-    type: rss
-    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCN7dywl5wDxTu1RM3eJ_h9Q
-
-  - id: yt_logomashina
-    name: 'Логомашина'
-    group: youtube
-    type: rss
-    url: https://www.youtube.com/feeds/videos.xml?channel_id=UC2rRN-3FPt4LyqPLgKgvF2w
-
-  - id: yt_bang_bang_education
-    name: 'Bang Bang Education'
-    group: youtube
-    type: rss
-    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCWR7anXoeACq4RYrFQyJn9w

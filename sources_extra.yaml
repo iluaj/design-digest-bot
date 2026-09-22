@@ -1,0 +1,719 @@
+# Источники, выведенные из дайджеста: статьи, заметки, доклады, мемы.
+# Бот этот файл НЕ читает. Нужен источник обратно — перенесите запись
+# в sources.yaml и поправьте поле group.
+
+sources:
+- id: nielsen_norman_group
+  name: Nielsen Norman Group
+  group: ui_product
+  type: rss
+  url: https://www.nngroup.com/feed/rss/
+- id: ux_collective
+  name: UX Collective
+  group: ui_product
+  type: rss
+  url: https://uxdesign.cc/feed
+- id: ux_collective_design_systems
+  name: UX Collective Design Systems
+  group: ui_product
+  type: rss
+  url: https://uxdesign.cc/feed/tagged/design-systems
+- id: ux_planet
+  name: UX Planet
+  group: ui_product
+  type: rss
+  url: https://uxplanet.org/feed
+- id: ux_magazine
+  name: UX Magazine
+  group: ui_product
+  type: rss
+  url: https://uxmag.com/feed
+- id: interaction_design_foundatio
+  name: Interaction Design Foundation
+  group: ui_product
+  type: rss
+  url: https://ixdf.org/rss/site_news.xml
+- id: web_designer_depot
+  name: Web Designer Depot
+  group: ui_product
+  type: rss
+  url: https://webdesignerdepot.com/feed/
+- id: ux_movement
+  name: UX Movement
+  group: ui_product
+  type: rss
+  url: https://uxmovement.com/feed/
+- id: prototypr
+  name: Prototypr
+  group: ui_product
+  type: rss
+  url: https://blog.prototypr.io/feed
+- id: sidebar
+  name: Sidebar
+  group: ui_product
+  type: rss
+  url: https://sidebar.io/feed.xml
+- id: brad_frost
+  name: Brad Frost
+  group: ui_product
+  type: rss
+  url: https://bradfrost.com/feed/
+- id: maggie_appleton
+  name: Maggie Appleton
+  group: ui_product
+  type: rss
+  url: https://maggieappleton.com/rss.xml
+- id: lukew
+  name: LukeW
+  group: ui_product
+  type: rss
+  url: https://www.lukew.com/rss/rss.asp
+- id: tobias_van_schneider
+  name: Tobias van Schneider
+  group: ui_product
+  type: rss
+  url: https://www.vanschneider.com/feed
+- id: nathan_curtis
+  name: Nathan Curtis
+  group: ui_product
+  type: rss
+  url: https://medium.com/feed/@nathanacurtis
+- id: julie_zhuo
+  name: Julie Zhuo
+  group: ui_product
+  type: rss
+  url: https://medium.com/feed/@joulee
+- id: figma_release_notes
+  name: Figma Release Notes
+  group: ui_product
+  type: rss
+  url: https://www.figma.com/release-notes/feed/atom.xml
+- id: vercel
+  name: Vercel
+  group: ui_product
+  type: rss
+  url: https://vercel.com/atom
+- id: intercom_blog
+  name: Intercom Blog
+  group: ui_product
+  type: rss
+  url: https://www.intercom.com/blog/feed/
+- id: airbnb_design
+  name: Airbnb Design
+  group: ui_product
+  type: rss
+  url: https://medium.com/feed/airbnb-design
+- id: spotify_design
+  name: Spotify Design
+  group: ui_product
+  type: rss
+  url: https://medium.com/feed/spotify-design
+- id: dropbox_design
+  name: Dropbox Design
+  group: ui_product
+  type: rss
+  url: https://medium.com/feed/dropbox-design
+- id: google_design
+  name: Google Design
+  group: ui_product
+  type: rss
+  url: https://medium.com/feed/google-design
+- id: microsoft_design
+  name: Microsoft Design
+  group: ui_product
+  type: rss
+  url: https://medium.com/feed/microsoft-design
+- id: jason_fried
+  name: Jason Fried
+  group: ui_product
+  type: rss
+  url: https://world.hey.com/jason/feed.atom
+- id: duolingo_blog
+  name: Duolingo Blog
+  group: ui_product
+  type: rss
+  url: https://blog.duolingo.com/rss/
+- id: tg_pdigest
+  name: Дайджест продуктового дизайна
+  group: ui_product
+  type: telegram
+  channel: pdigest
+  mode: web
+- id: tg_uxfromhell
+  name: Адовый UX
+  group: ui_product
+  type: telegram
+  channel: uxfromhell
+  mode: web
+- id: tg_uxnotes
+  name: UX Notes
+  group: ui_product
+  type: telegram
+  channel: uxnotes
+  mode: web
+- id: tg_uxhorn
+  name: UX Horn
+  group: ui_product
+  type: telegram
+  channel: uxhorn
+  mode: web
+- id: tg_uxdigest
+  name: UX Digest
+  group: ui_product
+  type: telegram
+  channel: uxdigest
+  mode: web
+- id: tg_ilyabirman_channel
+  name: Илья Бирман
+  group: ui_product
+  type: telegram
+  channel: ilyabirman_channel
+  mode: web
+- id: tg_bureaugorbunov
+  name: Бюро Горбунова
+  group: ui_product
+  type: telegram
+  channel: bureaugorbunov
+  mode: web
+- id: tg_bureauschool
+  name: Школа Бюро Горбунова
+  group: ui_product
+  type: telegram
+  channel: bureauschool
+  mode: web
+- id: tg_designavito
+  name: Дизайн Авито
+  group: ui_product
+  type: telegram
+  channel: designavito
+  mode: web
+- id: tg_ozondesign
+  name: Ozon Design
+  group: ui_product
+  type: telegram
+  channel: ozondesign
+  mode: web
+- id: tg_magnitdesign
+  name: Дизайн Магнита
+  group: ui_product
+  type: telegram
+  channel: magnitdesign
+  mode: web
+- id: tg_flowwowdesign
+  name: Дизайн Flowwow
+  group: ui_product
+  type: telegram
+  channel: flowwowdesign
+  mode: web
+- id: tg_desprod
+  name: Костя Горский
+  group: ui_product
+  type: telegram
+  channel: desprod
+  mode: web
+- id: tg_designpub2
+  name: Дизайн-кабак
+  group: ui_product
+  type: telegram
+  channel: designpub
+  mode: web
+- id: tg_figmaplugin
+  name: Figma Design
+  group: ui_product
+  type: telegram
+  channel: figmaplugin
+  mode: web
+- id: tg_designdealer
+  name: Designdealer
+  group: ui_product
+  type: telegram
+  channel: designdealer
+  mode: web
+- id: tg_uiux_design
+  name: UI/UX inspiration
+  group: ui_product
+  type: telegram
+  channel: uiux_design
+  mode: web
+- id: tg_nowhow
+  name: Now How
+  group: ui_product
+  type: telegram
+  channel: nowhow
+  mode: web
+- id: tg_cyrillicdesign
+  name: дизайнерс.сайты
+  group: ui_product
+  type: telegram
+  channel: cyrillicdesign
+  mode: web
+- id: tg_uxfail
+  name: Студия «Луч»
+  group: ui_product
+  type: telegram
+  channel: uxfail
+  mode: web
+- id: tg_uxmarafon
+  name: UX-Марафон
+  group: ui_product
+  type: telegram
+  channel: uxmarafon
+  mode: web
+- id: tg_productsense
+  name: ProductSense
+  group: ui_product
+  type: telegram
+  channel: productsense
+  mode: web
+- id: tg_productclub
+  name: Борода продакта
+  group: ui_product
+  type: telegram
+  channel: productclub
+  mode: web
+- id: tg_hardclient
+  name: Hard Client
+  group: ui_product
+  type: telegram
+  channel: hardclient
+  mode: web
+- id: tg_uxrdesign
+  name: Мамкин Дизайнер
+  group: ui_product
+  type: telegram
+  channel: uxrdesign
+  mode: web
+- id: tg_mosinkru
+  name: Почитать о дизайне
+  group: ui_product
+  type: telegram
+  channel: mosinkru
+  mode: web
+- id: tg_dsgnwknd
+  name: Дизайн-выходные
+  group: ui_product
+  type: telegram
+  channel: dsgnwknd
+  mode: web
+- id: tg_bbe_school
+  name: Bang Bang Education
+  group: ui_product
+  type: telegram
+  channel: bbe_school
+  mode: web
+- id: tg_bizikovru
+  name: Саша Бизиков
+  group: ui_product
+  type: telegram
+  channel: bizikovru
+  mode: web
+- id: smashing_magazine
+  name: Smashing Magazine
+  group: ui_craft
+  type: rss
+  url: https://www.smashingmagazine.com/feed/
+- id: a_list_apart
+  name: A List Apart
+  group: ui_craft
+  type: rss
+  url: https://alistapart.com/main/feed/
+- id: css_tricks
+  name: CSS-Tricks
+  group: ui_craft
+  type: rss
+  url: https://css-tricks.com/feed/
+- id: josh_w_comeau
+  name: Josh W Comeau
+  group: ui_craft
+  type: rss
+  url: https://www.joshwcomeau.com/rss.xml
+- id: jim_nielsen
+  name: Jim Nielsen
+  group: ui_craft
+  type: rss
+  url: https://blog.jim-nielsen.com/feed.xml
+- id: robin_rendle
+  name: Robin Rendle
+  group: ui_craft
+  type: rss
+  url: https://www.robinrendle.com/feed.xml
+- id: piccalilli
+  name: Piccalilli
+  group: ui_craft
+  type: rss
+  url: https://piccalil.li/feed.xml
+- id: andy_bell
+  name: Andy Bell
+  group: ui_craft
+  type: rss
+  url: https://bell.bz/feed.xml
+- id: adam_silver
+  name: Adam Silver
+  group: ui_craft
+  type: rss
+  url: https://adamsilver.io/atom.xml
+- id: paco_coursey
+  name: Paco Coursey
+  group: ui_craft
+  type: rss
+  url: https://paco.me/feed.xml
+- id: adam_argyle
+  name: Adam Argyle
+  group: ui_craft
+  type: rss
+  url: https://nerdy.dev/rss.xml
+- id: lea_verou
+  name: Lea Verou
+  group: ui_craft
+  type: rss
+  url: https://lea.verou.me/feed.xml
+- id: josh_collinsworth
+  name: Josh Collinsworth
+  group: ui_craft
+  type: rss
+  url: https://joshcollinsworth.com/rss.xml
+- id: adrian_roselli
+  name: Adrian Roselli
+  group: ui_craft
+  type: rss
+  url: https://adrianroselli.com/feed
+- id: scott_o_hara
+  name: Scott O'Hara
+  group: ui_craft
+  type: rss
+  url: https://www.scottohara.me/feed.xml
+- id: manuel_matuzovic
+  name: Manuel Matuzovic
+  group: ui_craft
+  type: rss
+  url: https://www.matuzo.at/feed.xml
+- id: ahmad_shadeed
+  name: Ahmad Shadeed
+  group: ui_craft
+  type: rss
+  url: https://ishadeed.com/feed.xml
+- id: hidde_de_vries
+  name: Hidde de Vries
+  group: ui_craft
+  type: rss
+  url: https://hidde.blog/feed.xml
+- id: jeremy_keith
+  name: Jeremy Keith
+  group: ui_craft
+  type: rss
+  url: https://adactio.com/rss
+- id: dave_rupert
+  name: Dave Rupert
+  group: ui_craft
+  type: rss
+  url: https://daverupert.com/atom.xml
+- id: htmhell
+  name: HTMHell
+  group: ui_craft
+  type: rss
+  url: https://www.htmhell.dev/feed.xml
+- id: chris_coyier
+  name: Chris Coyier
+  group: ui_craft
+  type: rss
+  url: https://chriscoyier.net/feed/
+- id: ben_myers
+  name: Ben Myers
+  group: ui_craft
+  type: rss
+  url: https://benmyers.dev/feed.xml
+- id: brent_jackson
+  name: Brent Jackson
+  group: ui_craft
+  type: rss
+  url: https://jxnblk.com/rss.xml
+- id: the_a11y_project
+  name: The A11Y Project
+  group: ui_craft
+  type: rss
+  url: https://www.a11yproject.com/feed/feed.xml
+- id: tpgi
+  name: TPGi
+  group: ui_craft
+  type: rss
+  url: https://www.tpgi.com/feed/
+- id: cloud_four
+  name: Cloud Four
+  group: ui_craft
+  type: rss
+  url: https://cloudfour.com/feed/
+- id: fast_company_co_design
+  name: Fast Company Co.Design
+  group: media
+  type: rss
+  url: https://www.fastcompany.com/co-design/rss
+- id: itsnicethat
+  name: It's Nice That
+  group: media
+  type: rss
+  url: http://feeds2.feedburner.com/itsnicethat/SlXC
+- id: creativereview
+  name: Creative Review
+  group: media
+  type: rss
+  url: https://www.creativereview.co.uk/feed/
+- id: awwwards
+  name: Awwwards
+  group: media
+  type: rss
+  url: https://www.awwwards.com/blog/feed/
+- id: core77
+  name: Core77
+  group: media
+  type: rss
+  url: https://www.core77.com/feed
+- id: sostav
+  name: Sostav
+  group: media
+  type: rss
+  url: https://www.sostav.ru/rss
+  include_keywords:
+  - дизайн
+  - брендинг
+  - ребрендинг
+  - логотип
+  - айдентик
+  - упаковк
+  - фирменн
+  - шрифт
+  - визуальн
+- id: habr_design
+  name: Хабр / Дизайн
+  group: media
+  type: rss
+  url: https://habr.com/ru/rss/hubs/design/articles/?fl=ru
+- id: tg_designpub
+  name: Дизайн-кабак
+  group: telegram
+  type: telegram
+  channel: designpub
+  mode: web
+- id: tg_ony
+  name: ONY (канал)
+  group: telegram
+  type: telegram
+  channel: onyagency
+  mode: web
+- id: tg_designmate
+  name: Design Mate
+  group: telegram
+  type: telegram
+  channel: designmate
+  mode: web
+- id: tg_glvrd
+  name: Максим Ильяхов
+  group: telegram
+  type: telegram
+  channel: glvrdru
+  mode: web
+- id: tg_sobakawow
+  name: Собака Павлова
+  group: telegram
+  type: telegram
+  channel: sobakawow
+  mode: api
+  enabled: false
+- id: tg_suprematika
+  name: Супрематика
+  group: telegram
+  type: telegram
+  channel: suprematika
+  mode: api
+  enabled: false
+- id: tg_glvrdru
+  name: Максим Ильяхов
+  group: telegram
+  type: telegram
+  channel: glvrdru
+  mode: web
+- id: tg_posterino
+  name: Posterino
+  group: telegram
+  type: telegram
+  channel: posterino
+  mode: web
+- id: tg_awdee
+  name: Оди
+  group: telegram
+  type: telegram
+  channel: awdee
+  mode: web
+- id: tg_logomachinee
+  name: Секретный канал Логомашины
+  group: telegram
+  type: telegram
+  channel: logomachinee
+  mode: web
+- id: tg_designsniper
+  name: Дизайн-снайпер
+  group: telegram
+  type: telegram
+  channel: designsniper
+  mode: web
+- id: tg_mr_mad_rabbit
+  name: MAD RABBIT
+  group: telegram
+  type: telegram
+  channel: mr_mad_rabbit
+  mode: web
+- id: tg_newfonts
+  name: Новые шрифты
+  group: telegram
+  type: telegram
+  channel: newfonts
+  mode: web
+- id: tg_mozhno
+  name: Визуальные приёмы
+  group: telegram
+  type: telegram
+  channel: mozhno
+  mode: web
+- id: tg_ayuev
+  name: ARE YOU EVE
+  group: telegram
+  type: telegram
+  channel: ayuev
+  mode: web
+- id: tg_graphicstory
+  name: graphic story
+  group: telegram
+  type: telegram
+  channel: graphicstory
+  mode: web
+- id: tg_typetoday
+  name: type.today
+  group: telegram
+  type: telegram
+  channel: typetoday
+  mode: web
+- id: tg_ponravu
+  name: Что понравилось в картинке
+  group: telegram
+  type: telegram
+  channel: ponravu
+  mode: web
+- id: tg_barbanel
+  name: DIMABARBANEL
+  group: telegram
+  type: telegram
+  channel: barbanel
+  mode: web
+- id: tg_hsedesignlab
+  name: Лаборатория дизайна ВШЭ
+  group: telegram
+  type: telegram
+  channel: hsedesignlab
+  mode: web
+- id: tg_designworkout
+  name: DESIGNWORKOUT
+  group: telegram
+  type: telegram
+  channel: designworkout
+  mode: web
+- id: tg_gurovplus
+  name: Gurov+
+  group: telegram
+  type: telegram
+  channel: gurovplus
+  mode: web
+- id: tg_fortyd
+  name: 40D
+  group: telegram
+  type: telegram
+  channel: fortyD
+  mode: web
+- id: yt_figma
+  name: Figma
+  group: youtube
+  type: rss
+  url: https://www.youtube.com/feeds/videos.xml?channel_id=UCQsVmhSa4X-G3lHlUtejzLA
+- id: yt_nielsen_norman_group
+  name: Nielsen Norman Group
+  group: youtube
+  type: rss
+  url: https://www.youtube.com/feeds/videos.xml?channel_id=UC2oCugzU6W8-h95W7eBTUEg
+- id: yt_apple_developer
+  name: Apple Developer
+  group: youtube
+  type: rss
+  url: https://www.youtube.com/feeds/videos.xml?channel_id=UCwrVwiJllwhJUKXKmjLcckQ
+- id: yt_micha_malewicz
+  name: Michał Malewicz
+  group: youtube
+  type: rss
+  url: https://www.youtube.com/feeds/videos.xml?channel_id=UC_Dq0oUEi7uXhdUX8prunbw
+- id: yt_mizko
+  name: Mizko
+  group: youtube
+  type: rss
+  url: https://www.youtube.com/feeds/videos.xml?channel_id=UCZJkZy008cQjqkJeKpJu8tA
+- id: yt_femke_van_schoonhoven
+  name: Femke van Schoonhoven
+  group: youtube
+  type: rss
+  url: https://www.youtube.com/feeds/videos.xml?channel_id=UCWUGGwfTfJ0-2jUS3dZqOJA
+- id: yt_jesse_showalter
+  name: Jesse Showalter
+  group: youtube
+  type: rss
+  url: https://www.youtube.com/feeds/videos.xml?channel_id=UCvBGFeXbBrq3W9_0oNLJREQ
+- id: yt_charlimarietv
+  name: CharliMarieTV
+  group: youtube
+  type: rss
+  url: https://www.youtube.com/feeds/videos.xml?channel_id=UCScRSwdX0t31gjk3MYXIuYQ
+- id: yt_designcourse
+  name: DesignCourse
+  group: youtube
+  type: rss
+  url: https://www.youtube.com/feeds/videos.xml?channel_id=UCVyRiMvfUNMA1UPlDPzG5Ow
+- id: yt_smashing_magazine
+  name: Smashing Magazine
+  group: youtube
+  type: rss
+  url: https://www.youtube.com/feeds/videos.xml?channel_id=UCSDtqcJ8ZXviPrEcj1vuLiQ
+- id: yt_linear
+  name: Linear
+  group: youtube
+  type: rss
+  url: https://www.youtube.com/feeds/videos.xml?channel_id=UCWivgq8xSp7QcXVyPHml-Aw
+- id: yt_vercel
+  name: Vercel
+  group: youtube
+  type: rss
+  url: https://www.youtube.com/feeds/videos.xml?channel_id=UCLq8gNoee7oXM7MvTdjyQvA
+- id: yt_byuro_gorbunova
+  name: Бюро Горбунова
+  group: youtube
+  type: rss
+  url: https://www.youtube.com/feeds/videos.xml?channel_id=UCSEmxO97jPGhrja7HhNzXMw
+- id: yt_the_futur
+  name: The Futur
+  group: youtube
+  type: rss
+  url: https://www.youtube.com/feeds/videos.xml?channel_id=UC-b3c7kxa5vU-bnmaROgvog
+- id: yt_chris_do
+  name: Chris Do
+  group: youtube
+  type: rss
+  url: https://www.youtube.com/feeds/videos.xml?channel_id=UCWqGiF72rubTwZLNoKT9Y1A
+- id: yt_flux_academy
+  name: Flux Academy
+  group: youtube
+  type: rss
+  url: https://www.youtube.com/feeds/videos.xml?channel_id=UCN7dywl5wDxTu1RM3eJ_h9Q
+- id: yt_logomashina
+  name: Логомашина
+  group: youtube
+  type: rss
+  url: https://www.youtube.com/feeds/videos.xml?channel_id=UC2rRN-3FPt4LyqPLgKgvF2w
+- id: yt_bang_bang_education
+  name: Bang Bang Education
+  group: youtube
+  type: rss
+  url: https://www.youtube.com/feeds/videos.xml?channel_id=UCWR7anXoeACq4RYrFQyJn9w
