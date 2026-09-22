@@ -744,26 +744,12 @@ sources:
     url: https://studio-drama.com/projects
     link_pattern: '/projects/'
 
-  - id: embacy
-    name: 'Embacy'
-    group: studios
-    type: html
-    url: https://www.linkedin.com/posts/orlowadim_top-10-rebrandings-of-2025-in-tech-activity-7416434857616240640-Y_Qg
-    link_pattern: '/company/'
-
   - id: focus_lab
     name: 'Focus Lab'
     group: studios
     type: html
     url: https://www.focuslab.agency/work
     link_pattern: '/work/'
-
-  - id: form_brands_studio
-    name: 'FORM Brands Studio'
-    group: studios
-    type: html
-    url: https://www.creativereview.co.uk/st-georges-cross-design-team-england-form/
-    link_pattern: '/landing-page/'
 
   - id: do_things
     name: 'Do Things'
@@ -1513,13 +1499,6 @@ sources:
     type: html
     url: https://www.studioplankton.com/work
     link_pattern: '/work/'
-
-  - id: onmi
-    name: 'Onmi'
-    group: studios
-    type: html
-    url: https://www.itsnicethat.com/articles/onmi-design-discover-graphic-design-270824
-    link_pattern: '/articles/'
 
   - id: otherway
     name: 'Otherway'

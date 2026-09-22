@@ -5,10 +5,28 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
+# Полный набор заголовков настоящего браузера. Accept-Encoding сознательно НЕ
+# задаём: библиотека подставит то, что реально умеет распаковать. Если объявить
+# br (Brotli) без соответствующего пакета, сервер пришлёт сжатое тело, а мы
+# получим двоичный мусор вместо страницы — и все источники молча опустеют. Защита от ботов на серверных
+# IP (например, в GitHub Actions) отбивает запросы с куцым набором: смотрит на
+# Accept, Sec-Fetch-* и Upgrade-Insecure-Requests, а не только на User-Agent.
 HEADERS = {
     "User-Agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
                    "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"),
+    "Accept": ("text/html,application/xhtml+xml,application/xml;q=0.9,"
+               "image/avif,image/webp,*/*;q=0.8"),
     "Accept-Language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
+    "Upgrade-Insecure-Requests": "1",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "none",
+    "Sec-Fetch-User": "?1",
+    "Sec-CH-UA": '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
+    "Sec-CH-UA-Mobile": "?0",
+    "Sec-CH-UA-Platform": '"macOS"',
+    "Cache-Control": "max-age=0",
+    "Connection": "keep-alive",
 }
 
 TIMEOUT = 25
