@@ -8,7 +8,7 @@ mode: api  — Telethon от твоего аккаунта: читает люб�
 import os, re
 from pathlib import Path
 from bs4 import BeautifulSoup
-from .base import Item, session, clean_text, passes_keywords, TIMEOUT
+from .base import Item, session, clean_text, passes_keywords, tidy_title, TIMEOUT
 
 SESSION_FILE = str(Path(__file__).parent.parent / "data" / "user_session")
 
@@ -23,7 +23,7 @@ def _title_and_summary(text: str):
     rest = clean_text(" ".join(lines[1:]), 200)
     if len(title) < 15 and rest:            # первая строка — эмодзи/рубрика
         title = clean_text(f"{title} {rest}", 150)
-    return title, rest
+    return tidy_title(title), rest
 
 
 def _fetch_web(source: dict, limit: int):

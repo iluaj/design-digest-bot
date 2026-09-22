@@ -6,7 +6,8 @@
 from collections import Counter
 from urllib.parse import urljoin, urlsplit
 from bs4 import BeautifulSoup
-from .base import Item, session, clean_text, passes_keywords, apply_title_regex, TIMEOUT
+from .base import (Item, session, clean_text, passes_keywords,
+                    apply_title_regex, tidy_title, TIMEOUT)
 
 SKIP_TAILS = {"", "work", "projects", "portfolio", "cases", "case-studies", "all-work"}
 # служебные разделы: архивы по тегам, категориям, пагинация. Это не проекты,
@@ -139,7 +140,7 @@ def fetch_html(source: dict, store=None, seed: bool = False):
             anchor = ""
         # title_regex применяем и к запасному варианту из адреса: у SPA-галерей
         # заголовка на странице нет, а чистить приходится именно слаг
-        title = apply_title_regex(source, title or anchor or _from_slug(url))
+        title = tidy_title(apply_title_regex(source, title or anchor or _from_slug(url)))
         if not title:
             continue
         if not passes_keywords(source, title, desc):
