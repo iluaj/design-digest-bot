@@ -137,7 +137,9 @@ def fetch_html(source: dict, store=None, seed: bool = False):
         anchor = _tidy(anchor, source["name"])
         if bad(anchor):
             anchor = ""
-        title = apply_title_regex(source, title or anchor) or _from_slug(url)
+        # title_regex применяем и к запасному варианту из адреса: у SPA-галерей
+        # заголовка на странице нет, а чистить приходится именно слаг
+        title = apply_title_regex(source, title or anchor or _from_slug(url))
         if not title:
             continue
         if not passes_keywords(source, title, desc):
@@ -147,16 +149,17 @@ def fetch_html(source: dict, store=None, seed: bool = False):
             title=title, url=url, summary=desc,
         ))
 
-    return _dedupe_titles(items)
+    return _dedupe_titles(items, source)
 
 
-def _dedupe_titles(items):
+def _dedupe_titles(items, source=None):
     """Один и тот же заголовок у нескольких проектов = это заголовок сайта,
-    а не работы (типично для SPA). Берём название из адреса."""
+    а не работы (типично для SPA). Берём название из адреса — и прогоняем его
+    через title_regex, иначе правило чистки до подстановки просто не доходит."""
     counts = Counter(i.title.lower() for i in items)
     for it in items:
         if counts[it.title.lower()] > 1:
             slug = _from_slug(it.url)
             if slug:
-                it.title = slug
+                it.title = apply_title_regex(source or {}, slug)
     return items

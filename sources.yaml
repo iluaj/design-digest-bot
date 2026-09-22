@@ -78,6 +78,8 @@ sources:
     type: html
     url: https://recent.design/
     link_pattern: '/i/'
+    # в начале заголовка идёт служебный хеш — отрезаем
+    title_regex: '^[A-Za-z0-9]{5,9}\s+(.+)$'
     title_regex: '^[A-Za-z0-9]{5,9}\s+(.+)$'
 
   - id: pageflows
@@ -94,6 +96,7 @@ sources:
     url: https://www.lapa.ninja/post/
     link_pattern: '/post/'
     exclude_keywords: ['browse all']
+    exclude_keywords: ['browse all']
 
   - id: landbook
     name: 'Land-book'
@@ -101,6 +104,8 @@ sources:
     type: html
     url: https://land-book.com/
     link_pattern: '/websites/'
+    # хвост «on Landbook - get inspired by…» в каждом заголовке
+    title_regex: '^(.+?)\s+on Landbook'
 
   # ═══════════ 🎨 Кейсы студий  (313) ═══════════
 
