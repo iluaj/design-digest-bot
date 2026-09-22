@@ -1,19 +1,33 @@
-# Переезд в облако: работает без твоего компа.
-# Нужно: приватный репозиторий + секреты BOT_TOKEN и CHAT_ID в
-# Settings -> Secrets and variables -> Actions.
-name: design digest
+# Запуск бота в облаке: компьютер владельца не нужен.
+#
+# Что настроить один раз:
+#   Settings -> Secrets and variables -> Actions -> New repository secret
+#     BOT_TOKEN — токен от @BotFather
+#     CHAT_ID   — кому слать (узнаётся командой: python run.py whoami)
+#
+# Состояние между запусками хранится в data/seen.txt — это отпечатки уже
+# отправленных работ. Текстовый файл, git дописывает его построчно.
+# Саму базу SQLite в репозиторий не кладём: она весит мегабайты.
+
+name: Дайджест
 
 on:
   schedule:
-    - cron: "0 15 * * *"     # 15:00 UTC = 18:00 МСК
-  workflow_dispatch:          # кнопка "запустить вручную"
+    - cron: "0 15 * * *"      # 15:00 UTC = 18:00 по Москве
+  workflow_dispatch:           # кнопка «Run workflow» на вкладке Actions
 
 permissions:
-  contents: write             # чтобы коммитить базу обратно
+  contents: write              # чтобы сохранять состояние обратно в репозиторий
+
+concurrency:
+  group: digest                # два запуска разом подрались бы за состояние
+  cancel-in-progress: false
 
 jobs:
   digest:
     runs-on: ubuntu-latest
+    timeout-minutes: 90        # обход трёхсот с лишним источников небыстрый
+
     steps:
       - uses: actions/checkout@v4
 
@@ -24,18 +38,36 @@ jobs:
 
       - run: pip install -r requirements.txt
 
-      - name: Собрать и отправить
+      - name: Восстановить состояние
+        run: python run.py import-state
+
+      - name: Обойти источники
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
-        run: |
-          python run.py collect
-          python run.py digest
+        run: python run.py collect
 
-      - name: Запомнить, что уже отправлено
+      - name: Отправить дайджест
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+        run: python run.py digest
+
+      - name: Сохранить состояние
+        if: success()
         run: |
+          python run.py export-state
           git config user.name  "design-digest-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add -f data/state.db
-          git diff --staged --quiet || git commit -m "state: $(date -u +%F)"
-          git push
+          git add data/seen.txt data/seeded.txt
+          if git diff --staged --quiet; then
+            echo "состояние не изменилось"
+          else
+            git commit -m "состояние: $(date -u +%F)"
+            git pull --rebase --autostash origin main
+            git push
+          fi
+
+      - name: Логи при сбое
+        if: failure()
+        run: tail -100 logs/bot.log || true

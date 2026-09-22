@@ -11,6 +11,8 @@
   python run.py auth             разовый вход в Telegram для mode: api
   python run.py discover <текст> найти публичные каналы по названию
   python run.py stats            что в базе
+  python run.py export-state     выгрузить состояние в текстовые файлы
+  python run.py import-state     собрать базу из текстовых файлов
 """
 import sys, os, time, logging, datetime as dt, threading
 from pathlib import Path
@@ -331,6 +333,49 @@ def cmd_discover(query: str):
             print("Каналов не найдено.")
 
 
+SEEN_FILE   = ROOT / "data" / "seen.txt"
+SEEDED_FILE = ROOT / "data" / "seeded.txt"
+
+
+def cmd_export_state():
+    """Выгружаем состояние в текстовые файлы.
+
+    В облаке базу между запусками держать негде, а класть в репозиторий
+    SQLite нельзя — это мегабайты двоичных данных на каждый коммит. Отпечатки
+    отправленных записей и список освоенных источников занимают на два порядка
+    меньше, и git дописывает их построчно.
+    """
+    store = storage.Store()
+    seen = [r[0] for r in store.db.execute(
+        "SELECT uid FROM items WHERE sent_at IS NOT NULL ORDER BY uid")]
+    seeded = [r[0] for r in store.db.execute("SELECT source_id FROM seeded ORDER BY source_id")]
+    SEEN_FILE.parent.mkdir(parents=True, exist_ok=True)
+    SEEN_FILE.write_text("\n".join(seen) + "\n", encoding="utf-8")
+    SEEDED_FILE.write_text("\n".join(seeded) + "\n", encoding="utf-8")
+    log.info("Выгружено: %d отпечатков, %d освоенных источников (%.0f КБ)",
+             len(seen), len(seeded), SEEN_FILE.stat().st_size / 1024)
+
+
+def cmd_import_state():
+    """Собираем базу обратно из текстовых файлов — первый шаг облачного запуска."""
+    store = storage.Store()
+    if not SEEN_FILE.exists():
+        log.info("Файла состояния нет — источники будут освоены с нуля")
+        return
+    seen = [l.strip() for l in SEEN_FILE.read_text(encoding="utf-8").splitlines() if l.strip()]
+    seeded = []
+    if SEEDED_FILE.exists():
+        seeded = [l.strip() for l in SEEDED_FILE.read_text(encoding="utf-8").splitlines() if l.strip()]
+    now = storage.now_iso()
+    store.db.executemany(
+        "INSERT OR IGNORE INTO items(uid,source_id,source_name,grp,title,url,summary,"
+        "published,found_at,sent_at) VALUES(?,'','','','','','','',?,?)",
+        [(u, now, now) for u in seen])
+    store.db.executemany("INSERT OR REPLACE INTO seeded VALUES(?,?)", [(s, now) for s in seeded])
+    store.db.commit()
+    log.info("Загружено: %d отпечатков, %d освоенных источников", len(seen), len(seeded))
+
+
 def cmd_stats():
     store = storage.Store()
     total, unsent = store.stats()
@@ -362,6 +407,10 @@ def main():
         cmd_discover(arg or sys.exit("укажи, что искать"))
     elif cmd == "stats":
         cmd_stats()
+    elif cmd == "export-state":
+        cmd_export_state()
+    elif cmd == "import-state":
+        cmd_import_state()
     else:
         print(__doc__)
 
