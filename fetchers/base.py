@@ -1,5 +1,5 @@
 """Общее для всех фетчеров: модель публикации и HTTP-сессия."""
-import re, html as htmllib
+import re, time, html as htmllib
 from dataclasses import dataclass, field
 import requests
 from requests.adapters import HTTPAdapter
@@ -65,14 +65,21 @@ class ResilientSession(requests.Session):
     def _impersonate(self, url, **kw):
         if curl_requests is None:
             return None
-        try:
-            return curl_requests.get(
-                url, impersonate="chrome",
-                timeout=kw.get("timeout", TIMEOUT),
-                allow_redirects=kw.get("allow_redirects", True),
-            )
-        except Exception:
-            return None
+        for attempt in range(2):
+            try:
+                r = curl_requests.get(
+                    url, impersonate="chrome",
+                    timeout=kw.get("timeout", TIMEOUT),
+                    allow_redirects=kw.get("allow_redirects", True),
+                )
+            except Exception:
+                return None
+            # 429 — «слишком часто», а не отказ: переждать и повторить один раз
+            if r.status_code == 429 and attempt == 0:
+                time.sleep(8)
+                continue
+            return r
+        return r
 
 
 def session() -> requests.Session:
